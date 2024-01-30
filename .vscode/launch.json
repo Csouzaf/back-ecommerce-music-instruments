@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: ecommerce-music-back",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\ecommerce-music-back.csproj",
+            "launchConfigurationId": "TargetFramework=;ecommerce_music_back"
+        }
+    ]
+}
