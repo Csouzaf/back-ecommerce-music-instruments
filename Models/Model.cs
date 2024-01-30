@@ -10,14 +10,14 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        long id { get; set; }
+        public int Id { get; set; }
         
-        private string nameModel { get; set; }
+        public string Name { get; set; }
 
         [JsonIgnore]
-        private Brand? brand { get; set; }
+        public Brand? Brand { get; set; }
 
         [ForeignKey("Brand")]
-        private int brandId { get; set; }
+        public int BrandId { get; set; }
     }
 }

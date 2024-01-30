@@ -12,10 +12,10 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        long id { get; set; }
-        private string nameBrand { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         
-        private ICollection<Model> models { get; } = new List<Model>();
+        public ICollection<Model> Models { get; } = new List<Model>();
 
 
     }
