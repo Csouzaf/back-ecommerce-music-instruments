@@ -31,7 +31,30 @@ namespace ecommerce_music_back.data
                 .WithOne(relations => relations.Brand)
                 .HasForeignKey(relations => relations.BrandId);
 
-                
+            // modelBuilder.Entity<DrumnsPercussion>()
+            //     .HasOne(relations => relations.Brand)
+            //     .WithMany(relations => relations.DrumnsPercussions)
+            //     .HasForeignKey(relations => relations.BrandId);
+
+            // modelBuilder.Entity<Brand>()
+            //     .HasMany(relations => relations.PianoKeyboards)
+            //     .WithOne(relations => relations.Brand)
+            //     .HasForeignKey(relations => relations.BrandId);
+
+            // modelBuilder.Entity<Brand>()
+            //     .HasMany(relations => relations.SoundBoxs)
+            //     .WithOne(relations => relations.Brand)
+            //     .HasForeignKey(relations => relations.BrandId);
+
+            // modelBuilder.Entity<Brand>()
+            //     .HasMany(relations => relations.StringInstruments)
+            //     .WithOne(relations => relations.Brand)
+            //     .HasForeignKey(relations => relations.BrandId);
+
+            // modelBuilder.Entity<Brand>()
+            //     .HasMany(relations => relations.WindInstruments)
+            //     .WithOne(relations => relations.Brand)
+            //     .HasForeignKey(relations => relations.BrandId);
         }
 
     }
