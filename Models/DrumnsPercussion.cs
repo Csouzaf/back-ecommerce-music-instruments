@@ -14,11 +14,11 @@ namespace ecommerce_music_back.Models
 
         public string Photo { get; set; }
 
-        public string Material { get; set; }
+        public string? Material { get; set; }
 
-        public string Height { get; set; }
+        public string? Height { get; set; }
 
-        public string Width { get; set; }
+        public string? Width { get; set; }
 
         [MaxLength(10000)]
         public string Description { get; set; }
@@ -27,10 +27,10 @@ namespace ecommerce_music_back.Models
 
         public bool IsNewOrUsed { get; set; }
 
-        // [JsonIgnore]
-        // public Brand? Brand { get; set; }
+        [JsonIgnore]
+        public Brand? Brand { get; set; }
 
-        // [ForeignKey("Brand")]
-        // public int BrandId { get; set; }
+        [ForeignKey("Brand")]
+        public int BrandId { get; set; }
     }
 }

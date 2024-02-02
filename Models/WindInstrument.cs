@@ -11,16 +11,16 @@ namespace ecommerce_music_back.Models
         
         public string Name { get; set; } 
 
-        public string Height { get; set; }
+        public string? Width { get; set; }
 
-        public string Width { get; set; }
+        public string? Color { get; set; }
 
-        public string Color { get; set; }
+        [JsonIgnore]
+        public Brand? Brand { get; set; }
 
-        // [JsonIgnore]
-        // public Brand? Brand { get; set; }
+        [ForeignKey("Brand")]
+        public int BrandId { get; set; }
 
-        // [ForeignKey("Brand")]
-        // public int BrandId { get; set; }
+        public string Photo { get; set; }
     }
 }
