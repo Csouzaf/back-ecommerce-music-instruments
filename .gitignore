@@ -26,3 +26,5 @@ replay_pid*
 api/appsettings.json
 
 *Migrations
+obj/
+bin/
