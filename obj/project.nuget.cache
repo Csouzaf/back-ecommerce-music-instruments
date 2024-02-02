@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o7ulLfUA/ic50oAq6NW1wFYJoFfzibAu0104NoCxoVbJx9S22sS/mq1JZB/cSuAmBDBH33st6Ei1rLo50dSk1Q==",
+  "dgSpecHash": "dWw/GTYlnEXNy+l0KKIGeNFFg1huTsJca9/8JDKojBK+I2wPgobxZzlrT23kcShVgXZGiqeCFfwWKbLLeVh40g==",
   "success": true,
-  "projectFilePath": "D:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj",
+  "projectFilePath": "d:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\csouz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\csouz\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

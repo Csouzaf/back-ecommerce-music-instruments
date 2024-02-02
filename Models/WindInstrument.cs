@@ -10,7 +10,7 @@ namespace ecommerce_music_back.Models
         public int Id { get; set; }
         
         public string Name { get; set; } 
-
+        
         public string? Width { get; set; }
 
         public string? Color { get; set; }

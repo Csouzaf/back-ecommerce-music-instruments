@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj": {}
+    "d:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj": {}
   },
   "projects": {
-    "D:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj": {
+    "d:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj",
+        "projectUniqueName": "d:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj",
         "projectName": "ecommerce-music-back",
-        "projectPath": "D:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj",
+        "projectPath": "d:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\ecommerce-music-back.csproj",
         "packagesPath": "C:\\Users\\csouz\\.nuget\\packages\\",
-        "outputPath": "D:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\obj\\",
+        "outputPath": "d:\\Arquivos e Programas\\Programação\\Csharp\\ecommerce-music-back\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\csouz\\AppData\\Roaming\\NuGet\\NuGet.Config"
