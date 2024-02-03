@@ -30,6 +30,12 @@ namespace ecommerce_music_back.Models
         public bool WithLever { get; set; }
 
         public string Photo { get; set; }
+
+        [JsonIgnore]
+        public StringsCategory StringsCategory { get; set; }
+
+        [ForeignKey("StringsInstrument")]
+        public int StringsInstrumentId { get; set; }
        
     }
 }

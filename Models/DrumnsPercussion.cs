@@ -28,9 +28,15 @@ namespace ecommerce_music_back.Models
         public bool IsNewOrUsed { get; set; }
 
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand Brand { get; set; }
 
         [ForeignKey("Brand")]
         public int BrandId { get; set; }
+
+        [JsonIgnore]
+        public DrumnsCategory DrumnsCategory { get; set; }
+
+        [ForeignKey("DrumnsPercussion")]
+        public int DrumnsPercussionId { get; set; }
     }
 }

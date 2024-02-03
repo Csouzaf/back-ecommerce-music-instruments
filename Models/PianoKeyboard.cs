@@ -20,6 +20,12 @@ namespace ecommerce_music_back.Models
 
         public string Photo { get; set; }
 
+        [JsonIgnore]
+        public PianoCategory PianoCategory { get; set; }
+
+        [ForeignKey("PianoKeyboard")]
+        public int PianoCategoryId { get; set; }
+
         
     }
 }

@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ecommerce_music_back.Models
 {
-
-
+    
     public class Brand
     {
         [Key]

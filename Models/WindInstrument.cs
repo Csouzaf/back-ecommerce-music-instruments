@@ -22,5 +22,11 @@ namespace ecommerce_music_back.Models
         public int BrandId { get; set; }
 
         public string Photo { get; set; }
+
+        [JsonIgnore]
+        public WindCategory WindCategory { get; set; }
+
+        [ForeignKey("WindInstrument")]
+        public int WindInstrumentId { get; set; }
     }
 }

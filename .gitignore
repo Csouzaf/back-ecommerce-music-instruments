@@ -23,8 +23,6 @@
 hs_err_pid*
 replay_pid*
 
-api/appsettings.json
 
 *Migrations
-obj/
-bin/
+*obj
