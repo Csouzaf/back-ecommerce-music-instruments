@@ -11,6 +11,19 @@ namespace ecommerce_music_back.Models
         public int Id { get; set; }
         
         public string Name { get; set; }
+        public string? SpeakerType { get; set; }
+        public int? NumberSpeakers { get; set; }
+        public string? Power { get; set; }
+        public string? UsbConnect { get; set; }
+        public string? Description { get; set; }
+        public bool RechargableBattery { get; set; }
+        public bool Bluetooth { get; set; }
+        public bool LedLight { get; set; }
+        public bool IncludesCharger { get; set; }
+        public string? Color { get; set; }
+        public double Price { get; set; }
+        public string? Volt { get; set; }
+        public string? Dimensions { get; set; }    
         
         [JsonIgnore]
         public Brand? Brand { get; set; }
