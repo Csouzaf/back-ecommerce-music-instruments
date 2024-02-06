@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ecommerce_music_back.Controllers;
 
 [ApiController]
-[Route("api/[Controller]")]
+[Route("string")]
 public class StringInstrumentController : Controller
 {
     private readonly IStringInstrumentsRepository _stringInstrumentsRepository;
@@ -18,12 +18,15 @@ public class StringInstrumentController : Controller
     }
 
     [HttpGet()]
-    public ActionResult<IEnumerable<StringInstrument>> findAll(){
-        return _stringInstrumentsRepository.findAll();
+    public async Task<ActionResult<IEnumerable<StringInstrument>>> FindAll(){
+        return await _stringInstrumentsRepository.FindAllAsync();
     }
 
     [HttpGet("{stringId}")]
-    public IActionResult findById(int stringId){
-        return Ok(_stringInstrumentsRepository.findById(stringId));
+    public async Task<IActionResult> FindById(int stringId){
+        var findId = await _stringInstrumentsRepository.FindByIdAsync(stringId);
+        if(findId == null) return NotFound("Não foi possível achar um instrumento");
+
+        return Ok(findId);
     }
 }

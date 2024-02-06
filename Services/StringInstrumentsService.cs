@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Models;
 using ecommerce_music_back.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace ecommerce_music_back.Services
 {
@@ -17,12 +18,12 @@ namespace ecommerce_music_back.Services
             _appDbContext = appDbContext;
         }
 
-        public List<StringInstrument> findAll(){
-            return _appDbContext.stringInstruments.ToList();
+        public async Task<List<StringInstrument>> FindAllAsync(){
+            return await _appDbContext.stringInstruments.ToListAsync();
         }
 
-        public StringInstrument findById(int stringId){
-            return _appDbContext.stringInstruments.FirstOrDefault(result => result.Id == stringId);
+        public async Task<StringInstrument> FindByIdAsync(int stringId){
+            return await _appDbContext.stringInstruments.FirstOrDefaultAsync(result => result.Id == stringId);
         }
         
     }

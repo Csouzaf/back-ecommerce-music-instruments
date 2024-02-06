@@ -8,7 +8,7 @@ namespace ecommerce_music_back.Repository
 {
     public interface IStringInstrumentsRepository
     {
-        List<StringInstrument> findAll();
-        StringInstrument findById(int stringId);
+       Task<List<StringInstrument>> FindAllAsync();
+       Task<StringInstrument> FindByIdAsync(int stringId);
     }
 }
