@@ -15,8 +15,6 @@ namespace ecommerce_music_back.Models
         public int Id { get; set; }
         public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
         public string? Name { get; set; }
-
-        public int? Number { get; set; }
        
 
     }

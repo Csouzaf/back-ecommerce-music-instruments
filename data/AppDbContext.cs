@@ -69,7 +69,7 @@ namespace ecommerce_music_back.data
             modelBuilder.Entity<DrumnsCategory>()
                 .HasMany(relations => relations.DrumnsPercussions)
                 .WithOne(relations => relations.DrumnsCategory)
-                .HasForeignKey(relations => relations.DrumnsPercussionId);
+                .HasForeignKey(relations => relations.DrumnsPercussionCategoryId);
 
             modelBuilder.Entity<PianoCategory>()
                 .HasMany(relations => relations.PianoKeyboards)
@@ -79,17 +79,17 @@ namespace ecommerce_music_back.data
             modelBuilder.Entity<WindCategory>()
                 .HasMany(relations => relations.WindInstruments)
                 .WithOne(relations => relations.WindCategory)
-                .HasForeignKey(relations => relations.WindInstrumentId);
+                .HasForeignKey(relations => relations.WindInstrumentCategoryId);
 
             modelBuilder.Entity<StringsCategory>()
                 .HasMany(relations => relations.StringInstruments)
                 .WithOne(relations => relations.StringsCategory)
-                .HasForeignKey(relations => relations.StringsInstrumentId);
+                .HasForeignKey(relations => relations.StringsInstrumentCategoryId);
 
             modelBuilder.Entity<SoundBoxCategory>()
                 .HasMany(relations => relations.SoundBoxs)
                 .WithOne(relations => relations.SoundBoxCategory)
-                .HasForeignKey(relations => relations.SoundBoxId);
+                .HasForeignKey(relations => relations.SoundBoxCategoryId);
         }
 
     }

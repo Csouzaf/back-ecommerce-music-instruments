@@ -16,7 +16,6 @@ namespace ecommerce_music_back.Models
         public ICollection<SoundBox> SoundBoxs { get; } = new List<SoundBox>();
         public string? Name { get; set; }
 
-        public int? Number { get; set; }
         
     }
 }

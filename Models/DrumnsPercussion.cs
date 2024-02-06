@@ -37,6 +37,6 @@ namespace ecommerce_music_back.Models
         public DrumnsCategory DrumnsCategory { get; set; }
 
         [ForeignKey("DrumnsPercussion")]
-        public int DrumnsPercussionId { get; set; }
+        public int DrumnsPercussionCategoryId { get; set; }
     }
 }

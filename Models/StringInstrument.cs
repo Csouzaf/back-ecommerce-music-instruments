@@ -35,7 +35,7 @@ namespace ecommerce_music_back.Models
         public StringsCategory StringsCategory { get; set; }
 
         [ForeignKey("StringsInstrument")]
-        public int StringsInstrumentId { get; set; }
+        public int StringsInstrumentCategoryId { get; set; }
        
     }
 }

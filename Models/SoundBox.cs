@@ -37,6 +37,6 @@ namespace ecommerce_music_back.Models
         public SoundBoxCategory SoundBoxCategory { get; set; }
 
         [ForeignKey("SoundBox")]
-        public int SoundBoxId { get; set; }
+        public int SoundBoxCategoryId { get; set; }
     }
 }

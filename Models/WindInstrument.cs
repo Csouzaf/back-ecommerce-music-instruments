@@ -27,6 +27,6 @@ namespace ecommerce_music_back.Models
         public WindCategory WindCategory { get; set; }
 
         [ForeignKey("WindInstrument")]
-        public int WindInstrumentId { get; set; }
+        public int WindInstrumentCategoryId { get; set; }
     }
 }

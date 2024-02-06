@@ -16,6 +16,5 @@ namespace ecommerce_music_back.Models
         public ICollection<WindInstrument> WindInstruments { get; } = new List<WindInstrument>();
         public string? Name { get; set; }
 
-        public int? Number { get; set; }
     }
 }
