@@ -10,5 +10,11 @@ namespace ecommerce_music_back.Repository
     {
        Task<List<StringInstrument>> FindAllAsync();
        Task<StringInstrument> FindByIdAsync(int stringId);
+
+       Task<StringInstrument> CreateAsync(StringInstrument stringInstrument);
+
+       Task<StringInstrument> UpdateAsync(StringInstrument stringInstrument, int stringId);
+
+      Task<bool> DeleteAsync( int stringId);
     }
 }

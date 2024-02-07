@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;
 using ecommerce_music_back.Repository;
 using ecommerce_music_back.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 // using ecommerce_music_back.Models;
 
 namespace ecommerce_music_back.Controllers;
@@ -29,4 +31,25 @@ public class StringInstrumentController : Controller
 
         return Ok(findId);
     }
+
+    [HttpPost()]
+    public async Task<IActionResult> Create([FromBody] StringInstrument stringInstrument){
+        var createStringInstrument = await _stringInstrumentsRepository.CreateAsync(stringInstrument);
+        return Created("Success", new {createStringInstrument});
+    }
+
+    [HttpPut("{stringId}")]
+    public async Task<IActionResult> Update([FromBody] StringInstrument stringInstrument, int stringId){
+        var update = await _stringInstrumentsRepository.UpdateAsync(stringInstrument, stringId);
+        return Ok(update);
+    }
+    
+    [HttpDelete("{stringId}")]
+    public async Task<IActionResult> DeleteAsync( int stringId){
+        
+        await _stringInstrumentsRepository.DeleteAsync( stringId);
+        return NoContent();
+        
+    }
+
 }

@@ -32,7 +32,7 @@ namespace ecommerce_music_back.Models
         public string Photo { get; set; }
 
         [JsonIgnore]
-        public StringsCategory StringsCategory { get; set; }
+        public StringsCategory? StringsCategory { get; set; }
 
         [ForeignKey("StringsInstrument")]
         public int StringsInstrumentCategoryId { get; set; }

@@ -1,4 +1,5 @@
 
+using AutoMapper;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Repository;
 using ecommerce_music_back.Services;
@@ -14,7 +15,7 @@ builder.Services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>(
 );
 
 builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
-
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
