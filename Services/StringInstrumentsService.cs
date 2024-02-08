@@ -15,12 +15,11 @@ namespace ecommerce_music_back.Services
     public class StringInstrumentsService : IStringInstrumentsRepository
     {
         private readonly AppDbContext _appDbContext;
-        private readonly IMapper _mapper;
 
-        public StringInstrumentsService(AppDbContext appDbContext, IMapper mapper)
+        public StringInstrumentsService(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
-            _mapper = mapper;
+
         }
 
         public async Task<List<StringInstrument>> FindAllAsync()
