@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using ecommerce_music_back.security.Data;
 using ecommerce_music_back.Models.admin;
 using ecommerce_music_back.data;
+using ecommerce_music_back.security.jwt;
 
 namespace ecommerce_music_back.security.controller
 {
@@ -14,15 +15,16 @@ namespace ecommerce_music_back.security.controller
     {
         private readonly IUserModel _userModel;
         private readonly AppDbContext _appDbContext;
-
-        public AuthenticationController(IUserModel userModel, AppDbContext appDbContext)
+        private readonly JwtService _jwtService;
+        public AuthenticationController(IUserModel userModel, AppDbContext appDbContext, JwtService jwtService)
         {
             _userModel = userModel;
             _appDbContext = appDbContext;
+            _jwtService = jwtService;
         }
 
         [HttpPost("signup")]
-        public IActionResult Signup(RegisterDtos registerDtos){
+        public IActionResult Signup([FromBody] RegisterDtos registerDtos){
 
             var userModel = new UserModel
             {
@@ -46,5 +48,24 @@ namespace ecommerce_music_back.security.controller
             return Created("success", new {createdUserAdm});
         }
 
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginDtos loginDtos){
+            
+            var verifyUserEmailAlreadyRegister =_userModel.FindByEmail(loginDtos.Email);
+            
+            var verifyUserPassword = verifyUserEmailAlreadyRegister.Password;
+
+            if(verifyUserEmailAlreadyRegister == null || verifyUserPassword == null)
+            {
+                return BadRequest(new {message = "Email or Password incorrect"});
+            }
+
+            var createJwtToken = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName);
+            
+            return Ok(new {message = "User Logged", createJwtToken});
+        } 
+
     }
+
+ 
 }

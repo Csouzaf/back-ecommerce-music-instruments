@@ -22,7 +22,7 @@ namespace ecommerce_music_back.security.jwt
         }
         private string masterKey = "MIHcAgEBBEIBX7Q9A5fOJRSY1XzR9KMMxj/LQZSW4npKdao4CrLqqUwYlPe7y4wFxQ3H0QhQw0QE0TZ8aD9ykP3HpENkydBs2yKgBwYFK4EEACOhgYkDgYYABAHEuENJgOmydp+0/W9jbguTJqqoKGqhV9IosloYa336oe+hRpTC0gKo+BZDTTesTq9QEWmAYjF6fJnr/pA8e6ZnxAANpRm5uN2K4Zr5ySEOyPql1sPS0YUSLtrSmykfcrPB7wz05BBfDpqpN/IGGR/HeDsmjLa+7qkh+W4hbD7skvSWtA==";
         
-        public string generateJwt(string uId, string Name)
+        public string generateJwt(Guid uId, string Name)
         {
             var econdeKey = Encoding.ASCII.GetBytes(masterKey);
 
@@ -34,14 +34,14 @@ namespace ecommerce_music_back.security.jwt
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier ,uId),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Name, getName.FirstName),
              
             };
 
             var header = new JwtHeader(verifySimmetricBytesAndAlgorithmsSignature);
 
-            var payload = new JwtPayload(uId, null, claims, null, DateTime.UtcNow.AddHours(2));
+            var payload = new JwtPayload(Guid.NewGuid().ToString(), null, claims, null, DateTime.UtcNow.AddHours(2));
 
             var securityToken = new JwtSecurityToken(header, payload);
 

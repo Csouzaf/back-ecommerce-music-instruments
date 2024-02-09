@@ -9,6 +9,6 @@ namespace ecommerce_music_back.security.Dtos
     {
         public string Email { get; set; }
         
-        public string Password { get; }
+        public string Password { get; set; }
     }
 }

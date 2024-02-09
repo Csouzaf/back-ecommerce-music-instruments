@@ -23,6 +23,10 @@ namespace ecommerce_music_back.security.service
         public UserModel findByName(string Name){
             return _appDbContext.UserModel.FirstOrDefault(u => u.FirstName == Name);
         }
+        
+        public UserModel FindByEmail(string Email){
+            return _appDbContext.UserModel.FirstOrDefault(u => u.Email == Email);
+        }
 
         public UserModel Create(UserModel userModel){
             _appDbContext.UserModel.Add(userModel);

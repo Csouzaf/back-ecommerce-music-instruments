@@ -8,6 +8,8 @@ namespace ecommerce_music_back.security.Data
     {
         UserModel findByName(string Name);
 
+        UserModel FindByEmail(string Email);
+
         UserModel Create(UserModel userModel);
     }
 }
