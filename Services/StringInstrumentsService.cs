@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;

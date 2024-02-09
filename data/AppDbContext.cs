@@ -1,4 +1,5 @@
 using ecommerce_music_back.Models;
+using ecommerce_music_back.Models.admin;
 using Microsoft.EntityFrameworkCore;
 
 namespace ecommerce_music_back.data
@@ -9,7 +10,9 @@ namespace ecommerce_music_back.data
         {
 
         }
-
+    
+        public DbSet<UserModel> UserModel { get; set; }
+        
         public DbSet<DrumnsCategory> DrumnsCategory { get; set; }
 
         public DbSet<PianoCategory> PianoCategory { get; set; }
