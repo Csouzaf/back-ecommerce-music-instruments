@@ -11,8 +11,10 @@ using Xunit.Sdk;
 
 namespace ecommerce_music_back.tests
 {
+   
     public class StringInstrumentsTest
     {
+  
         [Fact]
         public async Task TestTrueToFindById()
         {
@@ -45,6 +47,26 @@ namespace ecommerce_music_back.tests
           var notFoundId = Assert.IsType<NotFoundObjectResult>(actFindById);
           Assert.Equal("Not Found Id",notFoundId.Value);
 
+        }
+
+        [Fact]
+        public async Task TestFindAllTrue()
+        {
+          //arrange
+          var mockRepository = new Mock<IStringInstrumentsRepository>();
+          var expectedListId = new List<StringInstrument>();
+          mockRepository.Setup(repo => repo.FindAllAsync()).ReturnsAsync(expectedListId);
+          var controller = new StringInstrumentController(mockRepository.Object);
+
+          //action
+
+          var findAll = await controller.FindAll();
+
+          //assert
+
+          var okResult = Assert.IsType<OkObjectResult>(findAll);
+          var resultList =  Assert.IsAssignableFrom<List<StringInstrument>>(okResult);
+          Assert.Equal(expectedListId, resultList);
         }
     }
 }
