@@ -31,6 +31,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 
 builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
 
+builder.Services.AddScoped<IBrandRepository, BrandService>();
+
 builder.Services.AddScoped<IUserModel, UserModelService>();
 
 builder.Services.AddScoped<JwtService>();

@@ -8,6 +8,10 @@ namespace ecommerce_music_back.Models.response
 
         public ICollection<ModelResponse> ModelResponse { get; } = new List<ModelResponse>();
 
+        public BrandResponse()
+        {
+        
+        }
         public BrandResponse(Brand brand)
         {
             Id = brand.Id;
