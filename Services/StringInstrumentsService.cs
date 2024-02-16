@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;
@@ -14,10 +11,12 @@ namespace ecommerce_music_back.Services
     public class StringInstrumentsService : IStringInstrumentsRepository
     {
         private readonly AppDbContext _appDbContext;
+        private readonly IMapper _iMapper;
 
-        public StringInstrumentsService(AppDbContext appDbContext)
+        public StringInstrumentsService(AppDbContext appDbContext, IMapper mapper)
         {
             _appDbContext = appDbContext;
+            _iMapper = mapper;
 
         }
 
@@ -46,7 +45,6 @@ namespace ecommerce_music_back.Services
             {
                 throw new BadRequestError("Id doesn't exist");
             }
-            
             existStringInstument.Name = stringInstrument.Name;
             existStringInstument.WithLever = stringInstrument.WithLever;
             existStringInstument.NumberPickups = stringInstrument.NumberPickups;

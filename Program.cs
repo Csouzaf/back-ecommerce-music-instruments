@@ -37,6 +37,9 @@ builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+// builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(options =>
     {

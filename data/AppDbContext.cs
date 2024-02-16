@@ -1,6 +1,7 @@
 using ecommerce_music_back.Models;
 using ecommerce_music_back.Models.admin;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ecommerce_music_back.data
 {
@@ -68,6 +69,11 @@ namespace ecommerce_music_back.data
                 .HasMany(relations => relations.WindInstruments)
                 .WithOne(relations => relations.Brand)
                 .HasForeignKey(relations => relations.BrandId);
+
+            modelBuilder.Entity<Model>()
+                .HasMany(relations => relations.WindInstruments)
+                .WithOne(relations => relations.Model)
+                .HasForeignKey(relations => relations.ModelId);
 
             modelBuilder.Entity<DrumnsCategory>()
                 .HasMany(relations => relations.DrumnsPercussions)

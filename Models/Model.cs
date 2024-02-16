@@ -19,5 +19,7 @@ namespace ecommerce_music_back.Models
 
         [ForeignKey("Brand")]
         public int BrandId { get; set; }
+
+        public ICollection<WindInstrument> WindInstruments { get;} = new List<WindInstrument>();
     }
 }

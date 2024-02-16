@@ -45,9 +45,9 @@ public class StringInstrumentController : Controller
     }
     
     [HttpDelete("{stringId}")]
-    public async Task<IActionResult> DeleteAsync( int stringId){
+    public async Task<IActionResult> DeleteAsync(int stringId){
         
-        await _stringInstrumentsRepository.DeleteAsync( stringId);
+        await _stringInstrumentsRepository.DeleteAsync(stringId);
         return NoContent();
         
     }

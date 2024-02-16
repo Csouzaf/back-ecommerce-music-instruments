@@ -16,6 +16,12 @@ namespace ecommerce_music_back.Models
         public string? Color { get; set; }
 
         [JsonIgnore]
+        public Model? Model { get; set; }
+
+        [ForeignKey("Model")]
+        public int ModelId { get; set; }
+
+        [JsonIgnore]
         public Brand? Brand { get; set; }
 
         [ForeignKey("Brand")]
