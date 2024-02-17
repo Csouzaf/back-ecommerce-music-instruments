@@ -16,13 +16,9 @@ namespace ecommerce_music_back.Controllers
     {
         private readonly IBrandRepository _brandRepository;
 
-        private readonly BrandService _brandService;
-        private readonly BrandResponse _brandResponse;
-
         public BrandController(IBrandRepository brandRepository)
         {
             _brandRepository = brandRepository;
-
         }
       
         [HttpGet()]
