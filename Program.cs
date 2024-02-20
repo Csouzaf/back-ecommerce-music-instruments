@@ -21,6 +21,8 @@ ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddCors();
+
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
@@ -95,6 +97,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors(options => options.WithOrigins(new []{"http://localhost:7049","http://localhost:5075", "http://localhost:4200"})
+    .AllowCredentials()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
 
 app.UseAuthentication();
 
