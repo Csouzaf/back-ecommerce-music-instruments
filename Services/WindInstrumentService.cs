@@ -1,4 +1,5 @@
 using ecommerce_music_back.data;
+using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;
 using ecommerce_music_back.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,9 @@ namespace ecommerce_music_back.Services
             return await _appDbContext.windInstruments.FirstOrDefaultAsync(result => result.Id == id);
         }
 
-        public async Task<List<WindInstrument>> FindAll()
+        public async Task<List<WindInstrument>> FindAllAsync()
         {
-            return await _appDbContext.windInstruments.ToListAsync();
+            return await _appDbContext.windInstruments.Include(wind => wind.Brand.Models).ToListAsync();
         }
 
         public async Task<WindInstrument> CreateAsync(WindInstrument windInstrument)
@@ -31,18 +32,43 @@ namespace ecommerce_music_back.Services
             return windInstrument;
         }
 
-        // public async Task<WindInstrument> UpdateAsync(WindInstrument updateWindInstrument, int id)
-        // {
-        //     var windInstrumentArealdeyExist = _appDbContext.windInstruments.FindAsync(id);
+        public async Task<WindInstrument> UpdateAsync(WindInstrument updateWindInstrument, int id)
+        {
+            var windInstrumentArealdeyExist = await _appDbContext.windInstruments.FindAsync(id);
 
-        //     if(windInstrumentArealdeyExist == null)
-        //     {
-        //         throw new BadRequestError("Id doesn't exist")
-        //     }
+            if(windInstrumentArealdeyExist == null)
+            {
+                throw new BadRequestError("Id doesn't exist");
+            }
 
+            windInstrumentArealdeyExist.Name = updateWindInstrument.Name;
+            windInstrumentArealdeyExist.Width = updateWindInstrument.Width;
+            windInstrumentArealdeyExist.Color = updateWindInstrument.Color;
+            windInstrumentArealdeyExist.BrandId = updateWindInstrument.BrandId;
+            windInstrumentArealdeyExist.Photo = updateWindInstrument.Photo;
+            windInstrumentArealdeyExist.WindInstrumentCategoryId = updateWindInstrument.WindInstrumentCategoryId;
+            windInstrumentArealdeyExist.ModelId = updateWindInstrument.ModelId;
+
+            _appDbContext.Update(windInstrumentArealdeyExist);
+            await _appDbContext.SaveChangesAsync();
             
+            return windInstrumentArealdeyExist;
 
-        // }
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var verifyIfIdExist = await _appDbContext.windInstruments.FindAsync(id);
+
+            if(verifyIfIdExist == null){
+                throw new BadRequestError("Id não existe");
+            }
+
+            _appDbContext.Remove(verifyIfIdExist);
+            await _appDbContext.SaveChangesAsync();
+            return true;
+            
+        }
 
         
     }

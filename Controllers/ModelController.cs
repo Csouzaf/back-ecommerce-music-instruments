@@ -1,8 +1,9 @@
+using ecommerce_music_back.Models;
 using ecommerce_music_back.Models.response;
 using ecommerce_music_back.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ecommerce_music_back.Models
+namespace ecommerce_music_back.Controllers
 {
     [ApiController]
     [Route("model")]

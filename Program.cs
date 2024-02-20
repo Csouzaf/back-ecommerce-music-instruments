@@ -33,6 +33,8 @@ builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsServic
 
 builder.Services.AddScoped<IBrandRepository, BrandService>();
 
+builder.Services.AddScoped<IWindInstrumentRepository, WindInstrumentService>();
+
 builder.Services.AddScoped<IModelRepository, ModelService>();
 
 builder.Services.AddScoped<IUserModel, UserModelService>();

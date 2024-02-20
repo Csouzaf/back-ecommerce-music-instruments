@@ -23,7 +23,9 @@
 hs_err_pid*
 replay_pid*
 
+.launch.json
 
 *Migrations
 *obj
 *bin
+.vscode/launch.json

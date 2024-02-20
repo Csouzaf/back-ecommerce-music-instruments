@@ -30,9 +30,9 @@ namespace ecommerce_music_back.Models
         public string Photo { get; set; }
 
         [JsonIgnore]
-        public WindCategory WindCategory { get; set; }
+        public WindCategory? WindCategory { get; set; }
 
         [ForeignKey("WindInstrument")]
-        public int WindInstrumentCategoryId { get; set; }
+        public int? WindInstrumentCategoryId { get; set; }
     }
 }

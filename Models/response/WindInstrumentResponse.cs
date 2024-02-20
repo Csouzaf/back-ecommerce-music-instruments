@@ -10,9 +10,8 @@ namespace ecommerce_music_back.Models.response
 
         public string? Color { get; set; }
 
-        public Model? Model{ get; set; }
-
         public int BrandId { get; set; }
+        public int ModelId { get; set; }
 
         public string Photo { get; set; }
 
@@ -29,7 +28,7 @@ namespace ecommerce_music_back.Models.response
            Photo = windInstrument.Photo;
            BrandId = windInstrument.BrandId;
 
-          
+          //Criar obj q venha com a lista de modelresponse
 
         }
     }
