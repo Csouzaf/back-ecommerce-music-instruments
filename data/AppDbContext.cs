@@ -75,6 +75,11 @@ namespace ecommerce_music_back.data
                 .WithOne(relations => relations.Model)
                 .HasForeignKey(relations => relations.ModelId);
 
+            modelBuilder.Entity<Model>()
+                .HasMany(relations => relations.DrumnsPercussions)
+                .WithOne(relations => relations.Model)
+                .HasForeignKey(relations => relations.ModelId);
+
             modelBuilder.Entity<DrumnsCategory>()
                 .HasMany(relations => relations.DrumnsPercussions)
                 .WithOne(relations => relations.DrumnsCategory)

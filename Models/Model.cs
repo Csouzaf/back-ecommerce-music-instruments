@@ -21,5 +21,7 @@ namespace ecommerce_music_back.Models
         public int BrandId { get; set; }
 
         public ICollection<WindInstrument> WindInstruments { get;} = new List<WindInstrument>();
+
+        public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
     }
 }

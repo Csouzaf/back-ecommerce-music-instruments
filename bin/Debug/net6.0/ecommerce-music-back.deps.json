@@ -10,6 +10,7 @@
         "dependencies": {
           "AutoMapper": "13.0.1",
           "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.AspNet.Cors": "5.3.0",
           "Microsoft.AspNetCore.Authentication": "2.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.1",
           "Microsoft.AspNetCore.Cors": "2.2.0",
@@ -63,6 +64,14 @@
           "lib/netstandard2.0/Humanizer.dll": {
             "assemblyVersion": "2.8.0.0",
             "fileVersion": "2.8.26.1919"
+          }
+        }
+      },
+      "Microsoft.AspNet.Cors/5.3.0": {
+        "runtime": {
+          "lib/net45/System.Web.Cors.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.61130.707"
           }
         }
       },
@@ -1978,6 +1987,13 @@
       "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Cors/5.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GmnL9NNGTheEcUVSzjnFaMaCEIwWdvP6mBed1ux/7M0D2yc+uzZ6UN/gAA5mva1BZmah0G+F+MVaPkoValWpmQ==",
+      "path": "microsoft.aspnet.cors/5.3.0",
+      "hashPath": "microsoft.aspnet.cors.5.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication/2.0.0": {
       "type": "package",

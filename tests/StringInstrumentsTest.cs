@@ -63,9 +63,9 @@ namespace ecommerce_music_back.tests
           var findAll = await controller.FindAll();
 
           //assert
-
-          var okResult = Assert.IsType<OkObjectResult>(findAll);
-          var resultList =  Assert.IsAssignableFrom<List<StringInstrument>>(okResult);
+          var actionResult = Assert.IsType<ActionResult<List<StringInstrument>>>(findAll);
+          var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+          var resultList =  Assert.IsAssignableFrom<List<StringInstrument>>(okResult.Value);
           Assert.Equal(expectedListId, resultList);
         }
     }
