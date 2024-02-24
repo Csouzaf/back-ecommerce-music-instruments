@@ -41,6 +41,7 @@ namespace ecommerce_music_back.Controllers
             return Ok(new WindInstrumentResponse(updateAsync));
   
         }
+        
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteAsync(int id)

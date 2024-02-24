@@ -41,6 +41,8 @@ builder.Services.AddScoped<IModelRepository, ModelService>();
 
 builder.Services.AddScoped<IUserModel, UserModelService>();
 
+builder.Services.AddScoped<IDrumnsPercussionRepository, DrumnsPercussionService>();
+
 builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

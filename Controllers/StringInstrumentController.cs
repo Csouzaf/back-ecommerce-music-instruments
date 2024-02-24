@@ -20,7 +20,7 @@ public class StringInstrumentController : Controller
     }
 
     [HttpGet()]
-    public async Task<ActionResult<List<StringInstrument>>> FindAll(){
+    public async Task<ActionResult<List<StringInstrument>>> FindAll() {
         return Ok(await _stringInstrumentsRepository.FindAllAsync());
     }
 

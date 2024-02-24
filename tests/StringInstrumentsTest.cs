@@ -68,5 +68,14 @@ namespace ecommerce_music_back.tests
           var resultList =  Assert.IsAssignableFrom<List<StringInstrument>>(okResult.Value);
           Assert.Equal(expectedListId, resultList);
         }
+
+        // [Fact]
+        // public async Task TestCreateTrue()
+        // {
+
+        //   var mockRepository = new Mock<IStringInstrumentsRepository>();
+        //   var expectedCreateInstrument = new StringInstrument {Id = 5};
+        //   mockRepository.
+        // }
     }
 }

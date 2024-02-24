@@ -22,12 +22,7 @@ namespace ecommerce_music_back.Models.response
 
         public int BrandId { get; set; }
 
-        public Model? Model { get; set; }
-
-
         public int ModelId { get; set; }
-
-        public DrumnsCategory DrumnsCategory { get; set; }
 
         public int DrumnsPercussionCategoryId { get; set; }
 
@@ -36,9 +31,19 @@ namespace ecommerce_music_back.Models.response
             
         }
 
-          public DrumnsPercussionResponse(DrumnsPercussion drumnsPercussion)
+        public DrumnsPercussionResponse(DrumnsPercussion drumnsPercussion)
         {
-          
+          Id = drumnsPercussion.Id;
+          Name = drumnsPercussion.Name;
+          Photo = drumnsPercussion.Photo;
+          Material = drumnsPercussion.Material;
+          Height = drumnsPercussion.Height;
+          Width = drumnsPercussion.Width;
+          Description = drumnsPercussion.Description;
+          HasBaqueta = drumnsPercussion.HasBaqueta;
+          BrandId = drumnsPercussion.BrandId;
+          ModelId = drumnsPercussion.ModelId;
+          DrumnsPercussionCategoryId = drumnsPercussion.DrumnsPercussionCategoryId;
         }
     }
 }
