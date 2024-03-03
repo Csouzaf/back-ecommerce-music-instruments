@@ -60,7 +60,7 @@ namespace ecommerce_music_back.security.controller
                 return BadRequest(new {message = "Email or Password incorrect"});
             }
 
-            var createJwtToken = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName);
+            var createJwtToken = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName, verifyUserEmailAlreadyRegister.Email);
             
             return Ok(new {message = "User Logged", createJwtToken});
         } 

@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ecommerce_music_back.Models;
 using ecommerce_music_back.security.Data;
 using ecommerce_music_back.security.service;
+using Castle.Core.Smtp;
+using ecommerce_music_back.Models.admin;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,10 +28,9 @@ builder.Services.AddCors();
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddIdentity<UserModel, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
 
@@ -45,7 +46,14 @@ builder.Services.AddScoped<IDrumnsPercussionRepository, DrumnsPercussionService>
 
 builder.Services.AddScoped<IDrumnsPercussionCategoryRepository, DrumnsPercussionCategoryService>();
 
+//TODO - Criar o UseManager
+
+builder.Services.AddControllersWithViews();
+    
+
 builder.Services.AddScoped<JwtService>();
+
+// builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -84,6 +92,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession();
+
+
 
 var app = builder.Build();
 

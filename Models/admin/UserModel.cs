@@ -1,11 +1,12 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace ecommerce_music_back.Models.admin
 {
     [Table("UserModel")]
-    public class UserModel
+    public class UserModel : IdentityUser<string>
     {   
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

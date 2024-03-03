@@ -1,5 +1,7 @@
 using ecommerce_music_back.Models;
 using ecommerce_music_back.Models.admin;
+using ecommerce_music_back.security.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -33,6 +35,8 @@ namespace ecommerce_music_back.data
         public DbSet<PianoKeyboard> pianoKeyboards { get; set; }
 
         public DbSet<SoundBox> soundBoxes { get; set; }
+
+        public DbSet<ResetPassword> ResetPassword { get; set; }
 
         public DbSet<StringInstrument> stringInstruments { get; set; }
 
