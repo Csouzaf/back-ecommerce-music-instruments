@@ -45,16 +45,16 @@ namespace ecommerce_music_back.Services
             {
                 throw new BadRequestError("Id doesn't exist");
             }
-            existStringInstument.Name = stringInstrument.Name;
-            existStringInstument.WithLever = stringInstrument.WithLever;
-            existStringInstument.NumberPickups = stringInstrument.NumberPickups;
-            existStringInstument.NumberStrings = stringInstrument.NumberPickups;
-            existStringInstument.HandOrientation = stringInstrument.HandOrientation;
-            existStringInstument.BrandId = stringInstrument.BrandId;
-            existStringInstument.Color = stringInstrument.Color;
-            existStringInstument.Photo = stringInstrument.Photo;
-            existStringInstument.WoodType = stringInstrument.WoodType;
-            existStringInstument.StringsInstrumentCategoryId = stringInstrument.StringsInstrumentCategoryId;
+            // existStringInstument.Name = stringInstrument.Name;
+            // existStringInstument.WithLever = stringInstrument.WithLever;
+            // existStringInstument.NumberPickups = stringInstrument.NumberPickups;
+            // existStringInstument.NumberStrings = stringInstrument.NumberPickups;
+            // existStringInstument.HandOrientation = stringInstrument.HandOrientation;
+            // existStringInstument.BrandId = stringInstrument.BrandId;
+            // existStringInstument.Color = stringInstrument.Color;
+            // existStringInstument.Photo = stringInstrument.Photo;
+            // existStringInstument.WoodType = stringInstrument.WoodType;
+            // existStringInstument.StringsInstrumentCategoryId = stringInstrument.StringsInstrumentCategoryId;
             
             _appDbContext.stringInstruments.Update(existStringInstument);
             await _appDbContext.SaveChangesAsync();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ecommerce_music_back.Models;
 using ecommerce_music_back.Models.response;
 using ecommerce_music_back.Repository;
@@ -15,10 +16,12 @@ namespace ecommerce_music_back.Controllers
     public class BrandController : Controller
     {
         private readonly IBrandRepository _brandRepository;
+        private readonly IMapper _mapper;
 
-        public BrandController(IBrandRepository brandRepository)
+        public BrandController(IBrandRepository brandRepository, IMapper mapper)
         {
             _brandRepository = brandRepository;
+            _mapper = mapper;
         }
       
         [HttpGet()]
@@ -28,6 +31,14 @@ namespace ecommerce_music_back.Controllers
             var brandResponses = brands.Select(brand => new BrandResponse(brand)).ToList();
             return Ok(brandResponses);
            
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<BrandResponse>> Update(Brand brand, [FromRoute] int id)
+        {
+            var brandService = await _brandRepository.Update(brand, id);
+            var brandResponse = new BrandResponse(brandService);
+            return Ok(brandResponse);
         }
 
 

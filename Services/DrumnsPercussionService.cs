@@ -1,6 +1,8 @@
+using AutoMapper;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;
+using ecommerce_music_back.Models.response;
 using ecommerce_music_back.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +12,12 @@ namespace ecommerce_music_back.Services
     {
         private AppDbContext _appDbContext;
 
-        public DrumnsPercussionService(AppDbContext appDbContext)
+        public readonly IMapper _mapper;
+
+        public DrumnsPercussionService(AppDbContext appDbContext, IMapper mapper)
         {
             _appDbContext = appDbContext;
+            _mapper = mapper;
         }
 
         public async Task<List<DrumnsPercussion>> FindAllAsync()
@@ -32,7 +37,7 @@ namespace ecommerce_music_back.Services
             return drumnsPercussion;
         }
 
-        public async Task<DrumnsPercussion> UpdateAsync(DrumnsPercussion drumnsPercussion, int id)
+        public async Task<DrumnsPercussionResponse> UpdateAsync(DrumnsPercussion drumnsPercussion, int id)
         {
             var verifyDrumsPercussionExist = await _appDbContext.drumnsPercussions.FirstOrDefaultAsync(result => result.Id == id);
 
@@ -40,32 +45,12 @@ namespace ecommerce_music_back.Services
             {
                 throw new BadRequestError("Id não encontrado");
             }
-            
-            verifyDrumsPercussionExist.Name = drumnsPercussion.Name;
 
-            verifyDrumsPercussionExist.Photo = drumnsPercussion.Photo;
-
-            verifyDrumsPercussionExist.Material = drumnsPercussion.Material;
-
-            verifyDrumsPercussionExist.Height = drumnsPercussion.Height;
-
-            verifyDrumsPercussionExist.Width = drumnsPercussion.Width;
-        
-            verifyDrumsPercussionExist.Description = drumnsPercussion.Description;
-            
-            verifyDrumsPercussionExist.HasBaqueta = drumnsPercussion.HasBaqueta;
-
-            verifyDrumsPercussionExist.IsNewOrUsed = drumnsPercussion.IsNewOrUsed;
-
-            verifyDrumsPercussionExist.BrandId = drumnsPercussion.BrandId;
-
-            verifyDrumsPercussionExist.ModelId = drumnsPercussion.ModelId;
-
-            verifyDrumsPercussionExist.DrumnsPercussionCategoryId = drumnsPercussion.DrumnsPercussionCategoryId;
-
-            _appDbContext.drumnsPercussions.Update(drumnsPercussion);
+            var updateUser = _mapper.Map<DrumnsPercussion>(drumnsPercussion);
+            // _appDbContext.Entry(verifyDrumsPercussionExist).CurrentValues.SetValues(updateUser);
+            _appDbContext.drumnsPercussions.Update(updateUser);
             await _appDbContext.SaveChangesAsync();
-            return verifyDrumsPercussionExist;
+            return _mapper.Map<DrumnsPercussionResponse>(updateUser);
 
         }
 

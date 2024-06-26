@@ -10,9 +10,9 @@ namespace ecommerce_music_back.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Photo { get; set; }
+        public string? Photo { get; set; }
 
         public string? Material { get; set; }
 
@@ -28,7 +28,7 @@ namespace ecommerce_music_back.Models
         public bool IsNewOrUsed { get; set; }
 
         [JsonIgnore]
-        public Brand Brand { get; set; }
+        public Brand? Brand { get; set; }
 
         [ForeignKey("Brand")]
         public int BrandId { get; set; }
@@ -40,7 +40,7 @@ namespace ecommerce_music_back.Models
         public int ModelId { get; set; }
 
         [JsonIgnore]
-        public DrumnsCategory DrumnsCategory { get; set; }
+        public DrumnsCategory? DrumnsCategory { get; set; }
 
         [ForeignKey("DrumnsPercussion")]
         public int DrumnsPercussionCategoryId { get; set; }

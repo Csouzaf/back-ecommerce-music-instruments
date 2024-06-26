@@ -2,11 +2,10 @@ namespace ecommerce_music_back.Models.response
 {
     public class DrumnsPercussionResponse
     {
-        public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Photo { get; set; }
+        public string? Photo { get; set; }
 
         public string? Material { get; set; }
 
@@ -14,7 +13,7 @@ namespace ecommerce_music_back.Models.response
 
         public string? Width { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
         
         public bool HasBaqueta { get; set; }
 
@@ -32,18 +31,18 @@ namespace ecommerce_music_back.Models.response
         }
 
         public DrumnsPercussionResponse(DrumnsPercussion drumnsPercussion)
-        {
-          Id = drumnsPercussion.Id;
-          Name = drumnsPercussion.Name;
-          Photo = drumnsPercussion.Photo;
-          Material = drumnsPercussion.Material;
-          Height = drumnsPercussion.Height;
-          Width = drumnsPercussion.Width;
-          Description = drumnsPercussion.Description;
-          HasBaqueta = drumnsPercussion.HasBaqueta;
-          BrandId = drumnsPercussion.BrandId;
-          ModelId = drumnsPercussion.ModelId;
-          DrumnsPercussionCategoryId = drumnsPercussion.DrumnsPercussionCategoryId;
-        }
+         {}
+        //   Id = drumnsPercussion.Id;
+        //   Name = drumnsPercussion.Name;
+        //   Photo = drumnsPercussion.Photo;
+        //   Material = drumnsPercussion.Material;
+        //   Height = drumnsPercussion.Height;
+        //   Width = drumnsPercussion.Width;
+        //   Description = drumnsPercussion.Description;
+        //   HasBaqueta = drumnsPercussion.HasBaqueta;
+        //   BrandId = drumnsPercussion.BrandId;
+        //   ModelId = drumnsPercussion.ModelId;
+        //   DrumnsPercussionCategoryId = drumnsPercussion.DrumnsPercussionCategoryId;
+        // }
     }
 }

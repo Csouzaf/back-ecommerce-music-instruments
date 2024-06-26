@@ -21,6 +21,9 @@ ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddCors();
 
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>(
@@ -50,8 +53,6 @@ builder.Services.AddScoped<JwtService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // builder.Services.AddAutoMapper(typeof(Program));
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(options =>
     {

@@ -10,7 +10,7 @@ namespace ecommerce_music_back.Models.response
 
         public BrandResponse()
         {
-        
+            
         }
         public BrandResponse(Brand brand)
         {

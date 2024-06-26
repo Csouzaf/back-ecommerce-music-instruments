@@ -29,18 +29,18 @@ namespace ecommerce_music_back.Controllers
             return Ok(await _iDrumnsPercussionRepository.FindByIdAsync(id));
         }
 
-        [HttpPost()]
-        public async Task<ActionResult<DrumnsPercussion>> CreateAsync([FromBody] DrumnsPercussion drumnsPercussion)
-        {
-            var createDrumnsPercussion = await _iDrumnsPercussionRepository.CreateAsync(drumnsPercussion);
-            return Created("success", new DrumnsPercussionResponse(createDrumnsPercussion));
-        }
+        // [HttpPost()]
+        // public async Task<ActionResult<DrumnsPercussion>> CreateAsync([FromBody] DrumnsPercussion drumnsPercussion)
+        // {
+        //     var createDrumnsPercussion = await _iDrumnsPercussionRepository.CreateAsync(drumnsPercussion);
+        //     return Created("success", new DrumnsPercussionResponse(createDrumnsPercussion));
+        // }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<DrumnsPercussion>> UpdateAsync([FromBody] DrumnsPercussion drumnsPercussion, [FromQuery] int id)
+        public async Task<ActionResult<DrumnsPercussionResponse>> UpdateAsync([FromBody] DrumnsPercussion drumnsPercussion, int id)
         {
             var updateDrumnsPercussion = await _iDrumnsPercussionRepository.UpdateAsync(drumnsPercussion, id);
-            return Ok(new DrumnsPercussionResponse(updateDrumnsPercussion));
+            return Ok(updateDrumnsPercussion);
         }
 
         [HttpDelete("{id}")]
