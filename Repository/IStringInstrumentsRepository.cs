@@ -16,5 +16,7 @@ namespace ecommerce_music_back.Repository
        Task<StringInstrument> UpdateAsync(StringInstrument stringInstrument, int stringId);
 
        Task<bool> DeleteAsync(int stringId);
+
+       Task<int> CountStringInstruments(int id);
     }
 }

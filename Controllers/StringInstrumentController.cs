@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ecommerce_music_back.Controllers;
 
 [ApiController]
-[Route("string")]
+[Route("instrumentos-cordas")]
 public class StringInstrumentController : Controller
 {
     private readonly IStringInstrumentsRepository _stringInstrumentsRepository;
@@ -22,6 +22,11 @@ public class StringInstrumentController : Controller
     [HttpGet()]
     public async Task<ActionResult<List<StringInstrument>>> FindAll() {
         return Ok(await _stringInstrumentsRepository.FindAllAsync());
+    }
+
+    [HttpGet("categorias/{id}")]
+    public async Task<ActionResult<StringInstrument>> CountStrumentsByCategoryId([FromRoute] int id) {
+        return Ok(await _stringInstrumentsRepository.CountStringInstruments(id));
     }
 
     [HttpGet("{stringId}")]
