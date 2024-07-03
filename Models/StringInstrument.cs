@@ -11,6 +11,10 @@ namespace ecommerce_music_back.Models
         public int Id { get; set; }
         
         public string Name { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime dateTime { get; set; }
         
         [JsonIgnore]
         public Brand? Brand { get; set; }
