@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ecommerce_music_back.Models.admin
 {
-    [Table("UserModel")]
+    [Table("user_model")]
     public class UserModel
     {   
         [Key]

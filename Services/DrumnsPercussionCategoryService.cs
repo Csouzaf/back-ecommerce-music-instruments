@@ -16,7 +16,7 @@ namespace ecommerce_music_back.Services
     
         public async Task<List<DrumnsCategory>> FindAllAsync()
         {
-            return await _appDbContext.DrumnsCategory.ToListAsync();
+            return await _appDbContext.drumns_category.ToListAsync();
         } 
     
     }

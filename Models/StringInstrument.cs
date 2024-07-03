@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 namespace ecommerce_music_back.Models
 {
+    [Table("string_instrument")]
     public class StringInstrument
     {
         [Key]
@@ -16,6 +17,12 @@ namespace ecommerce_music_back.Models
 
         [ForeignKey("Brand")]
         public int BrandId { get; set; }
+
+        [JsonIgnore]
+        public Model? Models { get; set; }
+
+        [ForeignKey("Model")]
+        public int ModelId { get; set; }
 
         public string? Color {get; set; }
 

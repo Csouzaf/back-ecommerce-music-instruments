@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ecommerce_music_back.Models
 {
+    [Table("drumns_percussion")]
     public class DrumnsPercussion
     {
         [Key]

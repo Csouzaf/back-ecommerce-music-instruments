@@ -4,9 +4,10 @@ using System.Text.Json.Serialization;
 
 namespace ecommerce_music_back.Models
 {
+    [Table("sound_box")]
     public class SoundBox
     {
-         [Key]
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         

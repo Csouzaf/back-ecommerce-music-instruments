@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ecommerce_music_back.Models
 {
+    [Table("wind_category")]
     public class WindCategory
     {
         [Key]

@@ -13,7 +13,7 @@ namespace ecommerce_music_back.Models
             CreateMap<Brand, BrandResponse>().ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ReverseMap();
 
-
+            CreateMap<StringInstrumentResponse, String>().ReverseMap();
             
         }
     }

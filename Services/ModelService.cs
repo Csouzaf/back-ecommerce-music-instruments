@@ -16,7 +16,7 @@ namespace ecommerce_music_back.Services
 
        public Task<List<Model>> FindAllAsync()
        {
-            return _appDbContext.models.ToListAsync();
+            return _appDbContext.model.ToListAsync();
        }
     }
 }

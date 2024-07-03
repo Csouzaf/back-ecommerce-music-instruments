@@ -12,31 +12,31 @@ namespace ecommerce_music_back.data
 
         }
     
-        public DbSet<UserModel> UserModel { get; set; }
+        public DbSet<UserModel> user_model { get; set; }
         
-        public DbSet<DrumnsCategory> DrumnsCategory { get; set; }
+        public DbSet<DrumnsCategory> drumns_category { get; set; }
 
-        public DbSet<PianoCategory> PianoCategory { get; set; }
+        public DbSet<PianoCategory> piano_category { get; set; }
 
-        public DbSet<SoundBoxCategory> SoundBoxCategory { get; set; }
+        public DbSet<SoundBoxCategory> sound_box_category { get; set; }
 
-        public DbSet<StringsCategory> StringsCategory { get; set; }
+        public DbSet<StringsCategory> strings_category { get; set; }
 
-        public DbSet<WindCategory> WindCategory { get; set; }
+        public DbSet<WindCategory> wind_category { get; set; }
 
         public DbSet<Brand> brand  {get; set; }
 
-        public DbSet<DrumnsPercussion> drumnsPercussions { get; set; }
+        public DbSet<DrumnsPercussion> drumns_percussion { get; set; }
 
-        public DbSet<Model> models { get; set; }
+        public DbSet<Model> model { get; set; }
 
-        public DbSet<PianoKeyboard> pianoKeyboards { get; set; }
+        public DbSet<PianoKeyboard> piano_keyboard { get; set; }
 
-        public DbSet<SoundBox> soundBoxes { get; set; }
+        public DbSet<SoundBox> sound_box { get; set; }
 
-        public DbSet<StringInstrument> stringInstruments { get; set; }
+        public DbSet<StringInstrument> string_instrument { get; set; }
 
-        public DbSet<WindInstrument> windInstruments { get; set; }
+        public DbSet<WindInstrument> wind_instrument { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -73,6 +73,11 @@ namespace ecommerce_music_back.data
             modelBuilder.Entity<Model>()
                 .HasMany(relations => relations.WindInstruments)
                 .WithOne(relations => relations.Model)
+                .HasForeignKey(relations => relations.ModelId);
+
+            modelBuilder.Entity<Model>()
+                .HasMany(relations => relations.StringInstruments)
+                .WithOne(relations => relations.Models)
                 .HasForeignKey(relations => relations.ModelId);
 
             modelBuilder.Entity<Model>()

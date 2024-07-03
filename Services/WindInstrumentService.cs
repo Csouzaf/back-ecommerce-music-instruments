@@ -6,35 +6,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ecommerce_music_back.Services
 {
-    public class WindInstrumentService : IWindInstrumentRepository
+    public class WindInstrumentervice : IWindInstrumentRepository
     {
         private readonly AppDbContext _appDbContext;
 
-        public WindInstrumentService(AppDbContext appDbContext)
+        public WindInstrumentervice(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
         public async Task<WindInstrument> FindAsyncById(int id)
         {
-            return await _appDbContext.windInstruments.FirstOrDefaultAsync(result => result.Id == id);
+            return await _appDbContext.wind_instrument.FirstOrDefaultAsync(result => result.Id == id);
         }
 
         public async Task<List<WindInstrument>> FindAllAsync()
         {
-            return await _appDbContext.windInstruments.Include(wind => wind.Brand.Models).ToListAsync();
+            return await _appDbContext.wind_instrument.Include(wind => wind.Brand.Models).ToListAsync();
         }
 
         public async Task<WindInstrument> CreateAsync(WindInstrument windInstrument)
         {
-            await _appDbContext.windInstruments.AddAsync(windInstrument);
+            await _appDbContext.wind_instrument.AddAsync(windInstrument);
             await _appDbContext.SaveChangesAsync();
             return windInstrument;
         }
 
         public async Task<WindInstrument> UpdateAsync(WindInstrument updateWindInstrument, int id)
         {
-            var windInstrumentArealdeyExist = await _appDbContext.windInstruments.FindAsync(id);
+            var windInstrumentArealdeyExist = await _appDbContext.wind_instrument.FindAsync(id);
 
             if(windInstrumentArealdeyExist == null)
             {
@@ -58,7 +58,7 @@ namespace ecommerce_music_back.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var verifyIfIdExist = await _appDbContext.windInstruments.FindAsync(id);
+            var verifyIfIdExist = await _appDbContext.wind_instrument.FindAsync(id);
 
             if(verifyIfIdExist == null){
                 throw new BadRequestError("Id não existe");

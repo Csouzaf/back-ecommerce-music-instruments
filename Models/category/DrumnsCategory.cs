@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ecommerce_music_back.Models
 {
+    [Table("drumns_category")]
     public class DrumnsCategory
     {
         [Key]

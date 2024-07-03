@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace ecommerce_music_back.Models
 {
+    [Table("strings_category")]
     public class StringsCategory
     {
         [Key]

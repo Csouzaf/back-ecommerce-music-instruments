@@ -22,24 +22,24 @@ namespace ecommerce_music_back.Services
 
         public async Task<List<DrumnsPercussion>> FindAllAsync()
         {
-            return await _appDbContext.drumnsPercussions.ToListAsync();
+            return await _appDbContext.drumns_percussion.ToListAsync();
         }
 
         public async Task<DrumnsPercussion> FindByIdAsync(int id)
         {
-            return await _appDbContext.drumnsPercussions.FirstOrDefaultAsync(result => result.Id == id);
+            return await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.Id == id);
         }
 
         public async Task<DrumnsPercussion> CreateAsync(DrumnsPercussion drumnsPercussion)
         {
-            await _appDbContext.drumnsPercussions.AddAsync(drumnsPercussion);
+            await _appDbContext.drumns_percussion.AddAsync(drumnsPercussion);
             await _appDbContext.SaveChangesAsync();
             return drumnsPercussion;
         }
 
         public async Task<DrumnsPercussionResponse> UpdateAsync(DrumnsPercussion drumnsPercussion, int id)
         {
-            var verifyDrumsPercussionExist = await _appDbContext.drumnsPercussions.FirstOrDefaultAsync(result => result.Id == id);
+            var verifyDrumsPercussionExist = await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.Id == id);
 
             if(verifyDrumsPercussionExist == null)
             {
@@ -48,7 +48,7 @@ namespace ecommerce_music_back.Services
 
             var updateUser = _mapper.Map<DrumnsPercussion>(drumnsPercussion);
             // _appDbContext.Entry(verifyDrumsPercussionExist).CurrentValues.SetValues(updateUser);
-            _appDbContext.drumnsPercussions.Update(updateUser);
+            _appDbContext.drumns_percussion.Update(updateUser);
             await _appDbContext.SaveChangesAsync();
             return _mapper.Map<DrumnsPercussionResponse>(updateUser);
 
@@ -56,14 +56,14 @@ namespace ecommerce_music_back.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var verifyDrumsPercussionExist = await _appDbContext.drumnsPercussions.FirstOrDefaultAsync(result => result.Id == id);
+            var verifyDrumsPercussionExist = await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.Id == id);
 
             if(verifyDrumsPercussionExist == null)
             {
                 throw new BadRequestError("Id não encontrado");
             }
 
-            _appDbContext.drumnsPercussions.Remove(verifyDrumsPercussionExist);
+            _appDbContext.drumns_percussion.Remove(verifyDrumsPercussionExist);
             await _appDbContext.SaveChangesAsync();
             return true;
         }

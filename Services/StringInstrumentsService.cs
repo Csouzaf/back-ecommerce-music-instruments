@@ -23,24 +23,24 @@ namespace ecommerce_music_back.Services
 
         public async Task<List<StringInstrument>> FindAllAsync()
         {
-            return await _appDbContext.stringInstruments.ToListAsync();
+            return await _appDbContext.string_instrument.ToListAsync();
         }
 
         public async Task<StringInstrument> FindByIdAsync(int stringId)
         {
-            return await _appDbContext.stringInstruments.FirstOrDefaultAsync(result => result.Id == stringId);
+            return await _appDbContext.string_instrument.FirstOrDefaultAsync(result => result.Id == stringId);
         }
 
         public async Task<StringInstrument> CreateAsync(StringInstrument stringInstrument)
         {
-            await _appDbContext.stringInstruments.AddAsync(stringInstrument);
+            await _appDbContext.string_instrument.AddAsync(stringInstrument);
             await _appDbContext.SaveChangesAsync();
             return stringInstrument;
         }
 
         public async Task<StringInstrument> UpdateAsync(StringInstrument stringInstrument, int stringId)
         {
-            var existStringInstument = await _appDbContext.stringInstruments.FindAsync(stringId);
+            var existStringInstument = await _appDbContext.string_instrument.FindAsync(stringId);
 
             if (existStringInstument == null)
             {
@@ -57,20 +57,20 @@ namespace ecommerce_music_back.Services
             // existStringInstument.WoodType = stringInstrument.WoodType;
             // existStringInstument.StringsInstrumentCategoryId = stringInstrument.StringsInstrumentCategoryId;
 
-            _appDbContext.stringInstruments.Update(existStringInstument);
+            _appDbContext.string_instrument.Update(existStringInstument);
             await _appDbContext.SaveChangesAsync();
             return existStringInstument;
         }
 
         public async Task<bool> DeleteAsync(int stringId)
         {
-            StringInstrument existStringInstument = await _appDbContext.stringInstruments.FindAsync(stringId);
+            StringInstrument existStringInstument = await _appDbContext.string_instrument.FindAsync(stringId);
 
             if (existStringInstument == null)
             {
                 throw new BadRequestError("Id doesn't exist");
             }
-            _appDbContext.stringInstruments.Remove(existStringInstument);
+            _appDbContext.string_instrument.Remove(existStringInstument);
 
             await _appDbContext.SaveChangesAsync();
             return true;
@@ -86,7 +86,7 @@ namespace ecommerce_music_back.Services
             {
                 using (var contexto = _appDbContext)
                 {
-                    stringInstruments = await contexto.stringInstruments
+                    stringInstruments = await contexto.string_instrument
                             .Where(m => m.StringsInstrumentCategoryId == id)
                             .ToListAsync();
 

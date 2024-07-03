@@ -23,5 +23,7 @@ namespace ecommerce_music_back.Models
         public ICollection<WindInstrument> WindInstruments { get;} = new List<WindInstrument>();
 
         public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
+        
+        public ICollection<StringInstrument> StringInstruments { get; } = new List<StringInstrument>();
     }
 }

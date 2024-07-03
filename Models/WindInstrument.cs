@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 namespace ecommerce_music_back.Models
 {
+    [Table("wind_instrument")]
     public class WindInstrument
     {
         [Key]
