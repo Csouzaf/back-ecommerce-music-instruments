@@ -1,4 +1,5 @@
 using ecommerce_music_back.Models;
+using ecommerce_music_back.Models.response;
 
 namespace ecommerce_music_back.Repository
 {
@@ -6,11 +7,11 @@ namespace ecommerce_music_back.Repository
     {   
         Task<List<WindInstrument>> FindAllAsync();
 
-        Task<WindInstrument> FindAsyncById(int id);
+        Task<WindInstrumentResponse> FindAsyncById(int id);
 
-        Task<WindInstrument> CreateAsync(WindInstrument windInstrument);
+        Task<WindInstrumentResponse> CreateAsync(WindInstrument windInstrument);
 
-        Task<WindInstrument> UpdateAsync(WindInstrument updateWindInstrument, int id);
+        Task<WindInstrumentResponse> UpdateAsync(WindInstrument windInstrument, int id);
 
         Task<bool> DeleteAsync(int id);
     }

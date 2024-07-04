@@ -33,6 +33,14 @@ namespace ecommerce_music_back.Controllers
            
         }
 
+        [HttpPost()]
+        public async Task<ActionResult<BrandResponse>> Save(Brand brand)
+        {
+            var brandService = await _brandRepository.Create(brand);
+            var brandResponse = new BrandResponse(brandService);
+            return Created("success", brandResponse);
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<BrandResponse>> Update(Brand brand, [FromRoute] int id)
         {

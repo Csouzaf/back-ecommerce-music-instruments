@@ -26,5 +26,12 @@ namespace ecommerce_music_back.Controllers
             return Ok(selectNewListModels);
            
         }
+
+        [HttpPost()]
+        public async Task<ActionResult<ModelResponse>> Save(Model model)
+        {
+            var modelResponse = await _modelRepository.Create(model);
+            return Created("success", modelResponse);
+        }
     }
 }

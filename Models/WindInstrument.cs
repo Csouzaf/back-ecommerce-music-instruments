@@ -20,7 +20,7 @@ namespace ecommerce_music_back.Models
         public string? color { get; set; }
 
         [JsonIgnore]
-        public Model model { get; set; }
+        public Model? model { get; set; }
 
         [ForeignKey("Model")]
         public int modelId { get; set; }

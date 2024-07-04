@@ -9,5 +9,7 @@ namespace ecommerce_music_back.Repository
 
         Task<Brand> Update(Brand brand, int id);
 
+        Task<Brand> Create(Brand brand);
+
     }
 }

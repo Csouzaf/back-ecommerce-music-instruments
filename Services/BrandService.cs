@@ -19,9 +19,16 @@ namespace ecommerce_music_back.Services
             _mapper = mapper;
         }
 
-        public Task<List<Brand>> FindAllAsync()
+        public async Task<List<Brand>> FindAllAsync()
         {
-            return _appDbContext.brand.Include(brand => brand.models).ToListAsync();
+            return await _appDbContext.brand.Include(brand => brand.models).ToListAsync();
+        }
+
+        public async Task<Brand> Create(Brand brand)
+        {
+            _appDbContext.brand.Add(brand);
+            await _appDbContext.SaveChangesAsync();
+            return brand;
         }
 
         public async Task<Brand> Update(Brand brand, int id)

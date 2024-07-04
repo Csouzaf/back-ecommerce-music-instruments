@@ -16,6 +16,10 @@ namespace ecommerce_music_back.Models
             CreateMap<StringInstrument, StringInstrumentResponse>()
                 .ReverseMap();
             
+
+            CreateMap<WindInstrument, WindInstrumentResponse>()
+                .ReverseMap();
+            
         }
     }
 }

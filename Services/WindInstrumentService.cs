@@ -1,6 +1,8 @@
+using AutoMapper;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;
+using ecommerce_music_back.Models.response;
 using ecommerce_music_back.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,30 +11,37 @@ namespace ecommerce_music_back.Services
     public class WindInstrumentervice : IWindInstrumentRepository
     {
         private readonly AppDbContext _appDbContext;
+        private readonly IMapper _mapper;
 
-        public WindInstrumentervice(AppDbContext appDbContext)
+        public WindInstrumentervice(AppDbContext appDbContext, IMapper mapper)
         {
             _appDbContext = appDbContext;
+            _mapper = mapper;
         }
 
-        public async Task<WindInstrument> FindAsyncById(int id)
+        public async Task<WindInstrumentResponse> FindAsyncById(int id)
         {
-            return await _appDbContext.wind_instrument.FirstOrDefaultAsync(result => result.id == id);
+            
+            var findWindInstrumentById = await _appDbContext.wind_instrument.FirstOrDefaultAsync(result => result.id == id);
+            return _mapper.Map<WindInstrumentResponse>(findWindInstrumentById);
         }
 
         public async Task<List<WindInstrument>> FindAllAsync()
         {
             return await _appDbContext.wind_instrument.Include(wind => wind.brand.models).ToListAsync();
+
         }
 
-        public async Task<WindInstrument> CreateAsync(WindInstrument windInstrument)
+        public async Task<WindInstrumentResponse> CreateAsync(WindInstrument windInstrument)
         {
             await _appDbContext.wind_instrument.AddAsync(windInstrument);
             await _appDbContext.SaveChangesAsync();
-            return windInstrument;
+
+            var responseWindInstrument = _mapper.Map<WindInstrumentResponse>(windInstrument);
+            return responseWindInstrument;
         }
 
-        public async Task<WindInstrument> UpdateAsync(WindInstrument updateWindInstrument, int id)
+        public async Task<WindInstrumentResponse> UpdateAsync(WindInstrument windInstrument, int id)
         {
             var windInstrumentArealdeyExist = await _appDbContext.wind_instrument.FindAsync(id);
 
@@ -41,18 +50,16 @@ namespace ecommerce_music_back.Services
                 throw new BadRequestError("Id doesn't exist");
             }
 
-            // windInstrumentArealdeyExist.Name = updateWindInstrument.Name;
-            // windInstrumentArealdeyExist.Width = updateWindInstrument.Width;
-            // windInstrumentArealdeyExist.Color = updateWindInstrument.Color;
-            // windInstrumentArealdeyExist.BrandId = updateWindInstrument.BrandId;
-            // windInstrumentArealdeyExist.Photo = updateWindInstrument.Photo;
-            // windInstrumentArealdeyExist.WindInstrumentCategoryId = updateWindInstrument.WindInstrumentCategoryId;
-            // windInstrumentArealdeyExist.ModelId = updateWindInstrument.ModelId;
-
+            
+            windInstrumentArealdeyExist = _mapper.Map(windInstrument, windInstrumentArealdeyExist);
+            
+            
             _appDbContext.Update(windInstrumentArealdeyExist);
             await _appDbContext.SaveChangesAsync();
             
-            return windInstrumentArealdeyExist;
+            var windResponse = _mapper.Map<WindInstrumentResponse>(windInstrumentArealdeyExist);
+
+            return windResponse;
 
         }
 
