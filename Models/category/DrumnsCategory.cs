@@ -14,10 +14,10 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
+        public int id { get; set; }
+        public ICollection<DrumnsPercussion> drumnsPercussions { get; } = new List<DrumnsPercussion>();
 
-        public string? Name { get; set; }
+        public string? name { get; set; }
 
 
 

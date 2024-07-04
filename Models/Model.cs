@@ -10,20 +10,22 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
         
-        public string Name { get; set; }
+        [Column("name")]
+        public string name { get; set; }
 
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand? brand { get; set; }
 
         [ForeignKey("Brand")]
-        public int BrandId { get; set; }
+        [Column("brand_id")]
+        public int brandId { get; set; }
 
-        public ICollection<WindInstrument> WindInstruments { get;} = new List<WindInstrument>();
+        public ICollection<WindInstrument> windInstruments { get;} = new List<WindInstrument>();
 
-        public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
+        public ICollection<DrumnsPercussion> drumnsPercussions { get; } = new List<DrumnsPercussion>();
         
-        public ICollection<StringInstrument> StringInstruments { get; } = new List<StringInstrument>();
+        public ICollection<StringInstrument> stringInstruments { get; } = new List<StringInstrument>();
     }
 }

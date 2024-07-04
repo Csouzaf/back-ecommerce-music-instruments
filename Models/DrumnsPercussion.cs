@@ -9,41 +9,52 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
         
-        public string? Name { get; set; }
+        [Column("name")]
+        public string? name { get; set; }
 
-        public string? Photo { get; set; }
+        [Column("photo")]
+        public string? photo { get; set; }
 
-        public string? Material { get; set; }
+        [Column("material")]
+        public string? material { get; set; }
 
-        public string? Height { get; set; }
+        [Column("height")]
+        public string? height { get; set; }
 
-        public string? Width { get; set; }
+        [Column("width")]
+        public string? width { get; set; }
 
         [MaxLength(10000)]
-        public string Description { get; set; }
+        [Column("description")]
+        public string description { get; set; }
         
-        public bool HasBaqueta { get; set; }
+        [Column("has_baqueta")]
+        public bool hasBaqueta { get; set; }
 
-        public bool IsNewOrUsed { get; set; }
+        [Column("is_new_or_used")]
+        public bool isNewOrUsed { get; set; }
 
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand? brand { get; set; }
 
         [ForeignKey("Brand")]
-        public int BrandId { get; set; }
+        [Column("brand_id")]
+        public int brandId { get; set; }
 
         [JsonIgnore]
-        public Model? Model { get; set; }
+        public Model? model { get; set; }
 
         [ForeignKey("Model")]
-        public int ModelId { get; set; }
+        [Column("model_id")]
+        public int modelId { get; set; }
 
         [JsonIgnore]
-        public DrumnsCategory? DrumnsCategory { get; set; }
+        public DrumnsCategory? drumnsCategory { get; set; }
 
         [ForeignKey("DrumnsPercussion")]
-        public int DrumnsPercussionCategoryId { get; set; }
+        [Column("drumns_percussion_category_id")]
+        public int drumnsPercussionCategoryId { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace ecommerce_music_back.Services
 
         public async Task<DrumnsPercussion> FindByIdAsync(int id)
         {
-            return await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.Id == id);
+            return await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.id == id);
         }
 
         public async Task<DrumnsPercussion> CreateAsync(DrumnsPercussion drumnsPercussion)
@@ -39,7 +39,7 @@ namespace ecommerce_music_back.Services
 
         public async Task<DrumnsPercussionResponse> UpdateAsync(DrumnsPercussion drumnsPercussion, int id)
         {
-            var verifyDrumsPercussionExist = await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.Id == id);
+            var verifyDrumsPercussionExist = await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.id == id);
 
             if(verifyDrumsPercussionExist == null)
             {
@@ -56,7 +56,7 @@ namespace ecommerce_music_back.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var verifyDrumsPercussionExist = await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.Id == id);
+            var verifyDrumsPercussionExist = await _appDbContext.drumns_percussion.FirstOrDefaultAsync(result => result.id == id);
 
             if(verifyDrumsPercussionExist == null)
             {

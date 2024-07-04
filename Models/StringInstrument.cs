@@ -8,45 +8,57 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
         
-        public string Name { get; set; }
+        [Column("name")]
+        public string name { get; set; }
 
+        [Column("date_time")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime dateTime { get; set; }
         
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand? brand { get; set; }
 
         [ForeignKey("Brand")]
-        public int BrandId { get; set; }
+        [Column("brand_id")]
+        public int brandId { get; set; }
 
         [JsonIgnore]
         public Model? Models { get; set; }
 
         [ForeignKey("Model")]
-        public int ModelId { get; set; }
+        [Column("model_id")]
+        public int modelId { get; set; }
 
-        public string? Color {get; set; }
+        [Column("color")]
+        public string? color {get; set; }
 
-        public string? NumberStrings { get; set; }
+        [Column("number_string")]
+        public string? numberString { get; set; }
 
-        public string? NumberPickups { get; set; }
+        [Column("number_pickup")]
+        public string? numberPickup { get; set; }
 
-        public string WoodType{ get; set; }
+        [Column("wood_type")]
+        public string woodType{ get; set; }
 
-        public string? HandOrientation { get; set; }
+        [Column("hand_orientation")]
+        public string? handOrientation { get; set; }
 
-        public bool WithLever { get; set; }
+        [Column("with_lever")]
+        public bool withLever { get; set; }
 
-        public string Photo { get; set; }
+        [Column("photo")]
+        public string photo { get; set; }
 
         [JsonIgnore]
-        public StringsCategory? StringsCategory { get; set; }
+        public StringsCategory? stringsCategory { get; set; }
 
-        [ForeignKey("StringsInstrument")]
-        public int StringsInstrumentCategoryId { get; set; }
+        [ForeignKey("StringInstrument")]
+        [Column("string_instrument_category_id")]
+        public int stringInstrumentCategoryId { get; set; }
        
     }
 }

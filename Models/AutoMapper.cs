@@ -10,10 +10,11 @@ namespace ecommerce_music_back.Models
             CreateMap<DrumnsPercussionResponse, DrumnsPercussion>();
             CreateMap<DrumnsPercussion, DrumnsPercussionResponse>();
 
-            CreateMap<Brand, BrandResponse>().ForMember(dest => dest.Id, opt => opt.Ignore())
+            CreateMap<Brand, BrandResponse>()
                 .ReverseMap();
 
-            CreateMap<StringInstrumentResponse, String>().ReverseMap();
+            CreateMap<StringInstrument, StringInstrumentResponse>()
+                .ReverseMap();
             
         }
     }

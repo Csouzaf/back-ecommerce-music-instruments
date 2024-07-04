@@ -2,11 +2,11 @@ namespace ecommerce_music_back.Models.response
 {
     public class BrandResponse
     {
-        public int Id { get; set; }
+        public int id;
 
-        public string Name { get; set; }
+        public string name; 
 
-        public ICollection<ModelResponse> ModelResponse { get; } = new List<ModelResponse>();
+        public ICollection<ModelResponse> modelResponse = new List<ModelResponse>();
 
         public BrandResponse()
         {
@@ -14,19 +14,19 @@ namespace ecommerce_music_back.Models.response
         }
         public BrandResponse(Brand brand)
         {
-            Id = brand.Id;
-            Name = brand.Name;
+            id = brand.id;
+            name = brand.name;
 
-            var models = brand.Models;
+            var models = brand.models;
 
-            ModelResponse = new List<ModelResponse>();
+            modelResponse = new List<ModelResponse>();
 
             foreach(var forModelResponse in models)
             {
-                ModelResponse modelResponse = new ModelResponse();
-                modelResponse.Id = forModelResponse.Id;
-                modelResponse.Name = forModelResponse.Name;
-                ModelResponse.Add(modelResponse);
+                ModelResponse modelResponses = new ModelResponse();
+                modelResponses.id = forModelResponse.id;
+                modelResponses.name = forModelResponse.name;
+                modelResponse.Add(modelResponses);
             } 
            
         }

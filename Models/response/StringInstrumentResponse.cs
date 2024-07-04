@@ -6,29 +6,29 @@ namespace ecommerce_music_back.Models.response
     public class StringInstrumentResponse
     {
 
-        public int Id;
+        public int id;
         
-        public string Name;
+        public string name;
 
         public DateTime dateTime;
 
-        public int BrandId;
+        public int brandId;
 
-        public int ModelId;
+        public int modelId;
 
-        public string Color {get; set; }
+        public string color;
 
-        public string NumberStrings;
+        public string numberStrings;
 
-        public string NumberPickups;
+        public string numberPickups;
 
-        public string WoodType;
+        public string woodType;
 
-        public string HandOrientation;
+        public string handOrientation;
 
-        public bool WithLever;
+        public bool withLever;
 
-        public string Photo;
+        public string photo;
 
     //    public StringInstrumentResponse(StringInstrument stringInstrument)
     //    {

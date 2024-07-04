@@ -28,7 +28,7 @@ namespace ecommerce_music_back.Services
 
         public async Task<StringInstrument> FindByIdAsync(int stringId)
         {
-            return await _appDbContext.string_instrument.FirstOrDefaultAsync(result => result.Id == stringId);
+            return await _appDbContext.string_instrument.FirstOrDefaultAsync(result => result.id == stringId);
         }
 
         public async Task<StringInstrument> CreateAsync(StringInstrument stringInstrument)
@@ -87,7 +87,7 @@ namespace ecommerce_music_back.Services
                 using (var contexto = _appDbContext)
                 {
                     stringInstruments = await contexto.string_instrument
-                            .Where(m => m.StringsInstrumentCategoryId == id)
+                            .Where(m => m.stringInstrumentCategoryId == id)
                             .ToListAsync();
 
                     countStringInstruments = stringInstruments.Count();

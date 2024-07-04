@@ -2,18 +2,19 @@ namespace ecommerce_music_back.Models.response
 {
     public class WindInstrumentResponse
     {
-        public int Id { get; set; }
+        public int id;
         
-        public string Name { get; set; } 
+        public string name; 
         
-        public string? Width { get; set; }
+        public string width;
 
-        public string? Color { get; set; }
+        public string color;
 
-        public int BrandId { get; set; }
-        public int ModelId { get; set; }
+        public int brandId;
 
-        public string Photo { get; set; }
+        public int modelId;
+
+        public string photo;
 
         public WindInstrumentResponse(){
             
@@ -21,12 +22,12 @@ namespace ecommerce_music_back.Models.response
 
         public WindInstrumentResponse(WindInstrument windInstrument)
         {
-           Id = windInstrument.Id;
-           Name = windInstrument.Name;
-           Width = windInstrument.Width;
-           Color = windInstrument.Color;
-           Photo = windInstrument.Photo;
-           BrandId = windInstrument.BrandId;
+           id = windInstrument.id;
+           name = windInstrument.name;
+           width = windInstrument.width;
+           color = windInstrument.color;
+           photo = windInstrument.photo;
+           brandId = windInstrument.brandId;
 
           //Criar obj q venha com a lista de modelresponse
 

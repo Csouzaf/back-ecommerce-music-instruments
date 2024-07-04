@@ -25,6 +25,7 @@ replay_pid*
 
 .launch.json
 
+appsettings.json
 *Migrations
 *obj
 *bin

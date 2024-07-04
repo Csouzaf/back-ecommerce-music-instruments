@@ -10,15 +10,17 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int id { get; set; }
+
+        [Column("name")]
+        public string name { get; set; }
         
-        public ICollection<Model> Models { get; } = new List<Model>();
-        public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
-        public ICollection<PianoKeyboard> PianoKeyboards { get; } = new List<PianoKeyboard>();
-        public ICollection<SoundBox> SoundBoxs { get; } = new List<SoundBox>();
-        public ICollection<StringInstrument> StringInstruments { get; } = new List<StringInstrument>();
-        public ICollection<WindInstrument> WindInstruments { get; } = new List<WindInstrument>();
+        public ICollection<Model> models { get; } = new List<Model>();
+        public ICollection<DrumnsPercussion> drumnsPercussions { get; } = new List<DrumnsPercussion>();
+        public ICollection<PianoKeyboard> pianoKeyboards { get; } = new List<PianoKeyboard>();
+        public ICollection<SoundBox> soundBoxs { get; } = new List<SoundBox>();
+        public ICollection<StringInstrument> stringInstruments { get; } = new List<StringInstrument>();
+        public ICollection<WindInstrument> windInstruments { get; } = new List<WindInstrument>();
 
 
     }

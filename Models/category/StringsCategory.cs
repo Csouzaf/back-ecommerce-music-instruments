@@ -13,11 +13,11 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public ICollection<StringInstrument> StringInstruments { get; } = new List<StringInstrument>();
+        public ICollection<StringInstrument> stringInstruments { get; } = new List<StringInstrument>();
         
-        public string? Name { get; set; }
+        public string? name { get; set; }
 
        
     }

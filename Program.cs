@@ -26,8 +26,9 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 builder.Services.AddCors();
 
-builder.Services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<AppDbContext>(
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    
 );
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -38,7 +39,7 @@ builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsServic
 
 builder.Services.AddScoped<IBrandRepository, BrandService>();
 
-builder.Services.AddScoped<IWindInstrumentRepository, WindInstrumentService>();
+builder.Services.AddScoped<IWindInstrumentRepository, WindInstrumentervice>();
 
 builder.Services.AddScoped<IModelRepository, ModelService>();
 

@@ -8,32 +8,38 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
         
-        public string Name { get; set; } 
-        
-        public string? Width { get; set; }
+        [Column("name")]
+        public string name { get; set; }
 
-        public string? Color { get; set; }
+        [Column("width")]
+        public string? width { get; set; }
+
+        [Column("color")]
+        public string? color { get; set; }
 
         [JsonIgnore]
-        public Model Model { get; set; }
+        public Model model { get; set; }
 
         [ForeignKey("Model")]
-        public int ModelId { get; set; }
+        public int modelId { get; set; }
 
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand? brand { get; set; }
 
         [ForeignKey("Brand")]
-        public int BrandId { get; set; }
+        [Column("brand_id")]
+        public int brandId { get; set; }
 
-        public string Photo { get; set; }
+        [Column("photo")]
+        public string photo { get; set; }
 
         [JsonIgnore]
-        public WindCategory? WindCategory { get; set; }
+        public WindCategory? windCategory { get; set; }
 
         [ForeignKey("WindInstrument")]
-        public int? WindInstrumentCategoryId { get; set; }
+        [Column("wind_instrument_categoryId")]
+        public int? windInstrumentCategoryId { get; set; }
     }
 }

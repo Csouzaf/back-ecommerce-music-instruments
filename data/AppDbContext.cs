@@ -7,11 +7,16 @@ namespace ecommerce_music_back.data
 {
     public class AppDbContext : DbContext
     {
+        //private string _schema;
+        protected readonly IConfiguration _configuration;
+
+      
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
-    
+
+
         public DbSet<UserModel> user_model { get; set; }
         
         public DbSet<DrumnsCategory> drumns_category { get; set; }
@@ -41,74 +46,74 @@ namespace ecommerce_music_back.data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brand>()
-                .HasMany(relations => relations.Models)
-                .WithOne(relations => relations.Brand)
-                .HasForeignKey(relations => relations.BrandId);
+                .HasMany(relations => relations.models)
+                .WithOne(relations => relations.brand)
+                .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<DrumnsPercussion>()
-                .HasOne(relations => relations.Brand)
-                .WithMany(relations => relations.DrumnsPercussions)
-                .HasForeignKey(relations => relations.BrandId);
+                .HasOne(relations => relations.brand)
+                .WithMany(relations => relations.drumnsPercussions)
+                .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<Brand>()
-                .HasMany(relations => relations.PianoKeyboards)
-                .WithOne(relations => relations.Brand)
-                .HasForeignKey(relations => relations.BrandId);
+                .HasMany(relations => relations.pianoKeyboards)
+                .WithOne(relations => relations.brand)
+                .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<Brand>()
-                .HasMany(relations => relations.SoundBoxs)
-                .WithOne(relations => relations.Brand)
-                .HasForeignKey(relations => relations.BrandId);
+                .HasMany(relations => relations.soundBoxs)
+                .WithOne(relations => relations.brand)
+                .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<Brand>()
-                .HasMany(relations => relations.StringInstruments)
-                .WithOne(relations => relations.Brand)
-                .HasForeignKey(relations => relations.BrandId);
+                .HasMany(relations => relations.stringInstruments)
+                .WithOne(relations => relations.brand)
+                .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<Brand>()
-                .HasMany(relations => relations.WindInstruments)
-                .WithOne(relations => relations.Brand)
-                .HasForeignKey(relations => relations.BrandId);
+                .HasMany(relations => relations.windInstruments)
+                .WithOne(relations => relations.brand)
+                .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<Model>()
-                .HasMany(relations => relations.WindInstruments)
-                .WithOne(relations => relations.Model)
-                .HasForeignKey(relations => relations.ModelId);
+                .HasMany(relations => relations.windInstruments)
+                .WithOne(relations => relations.model)
+                .HasForeignKey(relations => relations.modelId);
 
             modelBuilder.Entity<Model>()
-                .HasMany(relations => relations.StringInstruments)
+                .HasMany(relations => relations.stringInstruments)
                 .WithOne(relations => relations.Models)
-                .HasForeignKey(relations => relations.ModelId);
+                .HasForeignKey(relations => relations.modelId);
 
             modelBuilder.Entity<Model>()
-                .HasMany(relations => relations.DrumnsPercussions)
-                .WithOne(relations => relations.Model)
-                .HasForeignKey(relations => relations.ModelId);
+                .HasMany(relations => relations.drumnsPercussions)
+                .WithOne(relations => relations.model)
+                .HasForeignKey(relations => relations.modelId);
 
             modelBuilder.Entity<DrumnsCategory>()
-                .HasMany(relations => relations.DrumnsPercussions)
-                .WithOne(relations => relations.DrumnsCategory)
-                .HasForeignKey(relations => relations.DrumnsPercussionCategoryId);
+                .HasMany(relations => relations.drumnsPercussions)
+                .WithOne(relations => relations.drumnsCategory)
+                .HasForeignKey(relations => relations.drumnsPercussionCategoryId);
 
             modelBuilder.Entity<PianoCategory>()
-                .HasMany(relations => relations.PianoKeyboards)
-                .WithOne(relations => relations.PianoCategory)
-                .HasForeignKey(relations => relations.PianoCategoryId);
+                .HasMany(relations => relations.pianoKeyboards)
+                .WithOne(relations => relations.pianoCategory)
+                .HasForeignKey(relations => relations.pianoCategoryId);
 
             modelBuilder.Entity<WindCategory>()
-                .HasMany(relations => relations.WindInstruments)
-                .WithOne(relations => relations.WindCategory)
-                .HasForeignKey(relations => relations.WindInstrumentCategoryId);
+                .HasMany(relations => relations.windInstruments)
+                .WithOne(relations => relations.windCategory)
+                .HasForeignKey(relations => relations.windInstrumentCategoryId);
 
             modelBuilder.Entity<StringsCategory>()
-                .HasMany(relations => relations.StringInstruments)
-                .WithOne(relations => relations.StringsCategory)
-                .HasForeignKey(relations => relations.StringsInstrumentCategoryId);
+                .HasMany(relations => relations.stringInstruments)
+                .WithOne(relations => relations.stringsCategory)
+                .HasForeignKey(relations => relations.stringInstrumentCategoryId);
 
             modelBuilder.Entity<SoundBoxCategory>()
-                .HasMany(relations => relations.SoundBoxs)
-                .WithOne(relations => relations.SoundBoxCategory)
-                .HasForeignKey(relations => relations.SoundBoxCategoryId);
+                .HasMany(relations => relations.soundBoxs)
+                .WithOne(relations => relations.soundBoxCategory)
+                .HasForeignKey(relations => relations.soundBoxCategoryId);
         }
 
     }

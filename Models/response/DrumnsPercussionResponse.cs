@@ -3,27 +3,27 @@ namespace ecommerce_music_back.Models.response
     public class DrumnsPercussionResponse
     {
         
-        public string? Name { get; set; }
+        public string? name;
 
-        public string? Photo { get; set; }
+        public string? photo;
 
-        public string? Material { get; set; }
+        public string? material;
 
-        public string? Height { get; set; }
+        public string? height;
 
-        public string? Width { get; set; }
+        public string? width;
 
-        public string? Description { get; set; }
+        public string? description;
         
-        public bool HasBaqueta { get; set; }
+        public bool hasBaqueta;
 
-        public bool IsNewOrUsed { get; set; }
+        public bool isNewOrUsed;
 
-        public int BrandId { get; set; }
+        public int brandId;
 
-        public int ModelId { get; set; }
+        public int modelId;
 
-        public int DrumnsPercussionCategoryId { get; set; }
+        public int drumnsPercussionCategoryId;
 
         public DrumnsPercussionResponse()
         {

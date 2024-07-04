@@ -12,10 +12,10 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public ICollection<PianoKeyboard> PianoKeyboards { get; } = new List<PianoKeyboard>();
-        public string? Name { get; set; }
+        public ICollection<PianoKeyboard> pianoKeyboards { get; } = new List<PianoKeyboard>();
+        public string? name { get; set; }
 
     }
 }

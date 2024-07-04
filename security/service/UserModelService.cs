@@ -21,15 +21,15 @@ namespace ecommerce_music_back.security.service
         }
 
         public UserModel findByName(string Name){
-            return _appDbContext.UserModel.FirstOrDefault(u => u.FirstName == Name);
+            return _appDbContext.user_model.FirstOrDefault(u => u.FirstName == Name);
         }
         
         public UserModel FindByEmail(string Email){
-            return _appDbContext.UserModel.FirstOrDefault(u => u.Email == Email);
+            return _appDbContext.user_model.FirstOrDefault(u => u.Email == Email);
         }
 
         public UserModel Create(UserModel userModel){
-            _appDbContext.UserModel.Add(userModel);
+            _appDbContext.user_model.Add(userModel);
             _appDbContext.SaveChanges();
             return userModel;
         }

@@ -2,9 +2,9 @@ namespace ecommerce_music_back.Models.response
 {
     public class ModelResponse
     {
-         public int Id { get; set; }
+         public int id;
         
-        public string Name { get; set; }
+        public string name;
 
         public ModelResponse()
         {
@@ -13,8 +13,8 @@ namespace ecommerce_music_back.Models.response
 
         public ModelResponse(Model model)
         {
-            Id = model.Id;
-            Name = model.Name;
+            id = model.id;
+            name = model.name;
         }
 
        

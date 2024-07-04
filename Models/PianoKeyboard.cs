@@ -9,23 +9,27 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
         
-        public string Name { get; set; }
+        [Column("name")]
+        public string name { get; set; }
 
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand? brand { get; set; }
 
         [ForeignKey("Brand")]
-        public int BrandId { get; set; }
+        [Column("brand_id")]
+        public int brandId { get; set; }
 
-        public string Photo { get; set; }
+        [Column("photo")]
+        public string photo { get; set; }
 
         [JsonIgnore]
-        public PianoCategory PianoCategory { get; set; }
+        public PianoCategory pianoCategory { get; set; }
 
         [ForeignKey("PianoKeyboard")]
-        public int PianoCategoryId { get; set; }
+        [Column("piano_category_id")]
+        public int pianoCategoryId { get; set; }
 
         
     }

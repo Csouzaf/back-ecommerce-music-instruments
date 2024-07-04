@@ -21,7 +21,7 @@ namespace ecommerce_music_back.Services
 
         public Task<List<Brand>> FindAllAsync()
         {
-            return _appDbContext.brand.Include(brand => brand.Models).ToListAsync();
+            return _appDbContext.brand.Include(brand => brand.models).ToListAsync();
         }
 
         public async Task<Brand> Update(Brand brand, int id)
@@ -33,7 +33,7 @@ namespace ecommerce_music_back.Services
                 throw new BadRequestError("id null");
             }
 
-            brand.Id = id;
+            brand.id = id;
             findById = _mapper.Map(brand, findById);
 
             await _appDbContext.SaveChangesAsync();

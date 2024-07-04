@@ -20,14 +20,14 @@ namespace ecommerce_music_back.tests
         {
           //
           var mockRepository = new Mock<IStringInstrumentsRepository>();
-          var expectedInstrument = new StringInstrumentResponse { Id = 1 };
+          var expectedInstrument = new StringInstrument { id = 1 };
           mockRepository.Setup(repo => repo.FindByIdAsync(1)).ReturnsAsync(expectedInstrument);
           var controller = new StringInstrumentController(mockRepository.Object);
           
           var result = await controller.FindById(1);
 
           var okResult = Assert.IsType<OkObjectResult>(result);
-          var actualInstrument = Assert.IsAssignableFrom<StringInstrumentResponse>(okResult.Value);
+          var actualInstrument = Assert.IsAssignableFrom<StringInstrument>(okResult.Value);
           Assert.Equal(expectedInstrument, actualInstrument);
         }
 
@@ -36,8 +36,8 @@ namespace ecommerce_music_back.tests
         {
           //arrange
           var mockRepository = new Mock<IStringInstrumentsRepository>();
-          var expectedInstrument = new StringInstrumentResponse { Id = 100 };
-          mockRepository.Setup(repo => repo.FindByIdAsync(100)).ReturnsAsync((StringInstrumentResponse)null);
+          var expectedInstrument = new StringInstrument { id = 100 };
+          mockRepository.Setup(repo => repo.FindByIdAsync(100)).ReturnsAsync((StringInstrument)null);
           var controller = new StringInstrumentController(mockRepository.Object);
 
           //act
@@ -54,7 +54,7 @@ namespace ecommerce_music_back.tests
         {
           //arrange
           var mockRepository = new Mock<IStringInstrumentsRepository>();
-          var expectedListId = new List<StringInstrumentResponse>();
+          var expectedListId = new List<StringInstrument>();
           mockRepository.Setup(repo => repo.FindAllAsync()).ReturnsAsync(expectedListId);
           var controller = new StringInstrumentController(mockRepository.Object);
 
@@ -63,9 +63,9 @@ namespace ecommerce_music_back.tests
           var findAll = await controller.FindAll();
 
           //assert
-          var actionResult = Assert.IsType<ActionResult<List<StringInstrumentResponse>>>(findAll);
+          var actionResult = Assert.IsType<ActionResult<List<StringInstrument>>>(findAll);
           var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
-          var resultList =  Assert.IsAssignableFrom<List<StringInstrumentResponse>>(okResult.Value);
+          var resultList =  Assert.IsAssignableFrom<List<StringInstrument>>(okResult.Value);
           Assert.Equal(expectedListId, resultList);
         }
 

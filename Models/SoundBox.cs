@@ -9,35 +9,66 @@ namespace ecommerce_music_back.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int id { get; set; }
         
-        public string Name { get; set; }
-        public string? SpeakerType { get; set; }
-        public int? NumberSpeakers { get; set; }
-        public string? Power { get; set; }
-        public string? UsbConnect { get; set; }
-        public string? Description { get; set; }
-        public bool RechargableBattery { get; set; }
-        public bool Bluetooth { get; set; }
-        public bool LedLight { get; set; }
-        public bool IncludesCharger { get; set; }
-        public string? Color { get; set; }
-        public double Price { get; set; }
-        public string? Volt { get; set; }
-        public string? Dimensions { get; set; }    
+        [Column("name")]
+        public string name { get; set; }
+
+        [Column("speaker_type")]
+        public string? speakerType { get; set; }
+
+        [Column("number_speakers")]
+        public int? numberSpeakers { get; set; }
+
+        [Column("power")]
+        public string? power { get; set; }
+          
+        [Column("usb_connect")]
+        public string? usbConnect { get; set; }
+
+        [MaxLength(10000)]
+        [Column("description")]
+        public string? description { get; set; }
+
+        [Column("rechargable_battery")]
+        public bool rechargableBattery { get; set; }
+
+        [Column("has_bluetooth")]
+        public bool hasBluetooth { get; set; }
+
+        [Column("has_led_light")]
+        public bool hasLedLight { get; set; }
+
+        [Column("include_charger")]
+        public bool includeCharger { get; set; }
+        
+        [Column("color")]
+        public string? color { get; set; }
+
+        [Column("price")]
+        public double price { get; set; }
+
+        [Column("volt")]
+        public string? volt { get; set; }
+
+        [Column("dimensions")]
+        public string? dimensions { get; set; }    
         
         [JsonIgnore]
-        public Brand? Brand { get; set; }
+        public Brand? brand { get; set; }
 
         [ForeignKey("Brand")]
-        public int BrandId { get; set; }
+        [Column("brand_id")]
+        public int brandId { get; set; }
 
-        public string Photo { get; set; }
+        [Column("photo")]
+        public string photo { get; set; }
 
         [JsonIgnore]
-        public SoundBoxCategory SoundBoxCategory { get; set; }
+        public SoundBoxCategory soundBoxCategory { get; set; }
 
         [ForeignKey("SoundBox")]
-        public int SoundBoxCategoryId { get; set; }
+        [Column("sound_box_category_id")]
+        public int soundBoxCategoryId { get; set; }
     }
 }
