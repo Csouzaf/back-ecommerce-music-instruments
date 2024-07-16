@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ecommerce_music_back.Models;
+using ecommerce_music_back.Models.response;
 
 namespace ecommerce_music_back.Repository
 {
@@ -11,7 +12,7 @@ namespace ecommerce_music_back.Repository
        Task<List<StringInstrument>> FindAllAsync();
        Task<StringInstrument> FindByIdAsync(int stringId);
 
-       Task<StringInstrument> CreateAsync(StringInstrument stringInstrument);
+       Task<StringInstrumentResponse> CreateAsync(StringInstrument stringInstrument);
 
        Task<StringInstrument> UpdateAsync(StringInstrument stringInstrument, int stringId);
 

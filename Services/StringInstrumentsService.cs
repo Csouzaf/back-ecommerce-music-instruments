@@ -1,9 +1,14 @@
+
 using System.Linq;
+using System.Security.Claims;
 using AutoMapper;
 using ecommerce_music_back.data;
 using ecommerce_music_back.Error;
 using ecommerce_music_back.Models;
+using ecommerce_music_back.Models.response;
 using ecommerce_music_back.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ecommerce_music_back.Services
@@ -11,13 +16,16 @@ namespace ecommerce_music_back.Services
 
     public class StringInstrumentsService : IStringInstrumentsRepository
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly AppDbContext _appDbContext;
-        private readonly IMapper _iMapper;
+        private readonly IMapper _mapper;
 
-        public StringInstrumentsService(AppDbContext appDbContext, IMapper mapper)
+        public StringInstrumentsService(AppDbContext appDbContext, IMapper mapper,
+            IHttpContextAccessor httpContextAccessor)
         {
             _appDbContext = appDbContext;
-            _iMapper = mapper;
+            _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
 
         }
 
@@ -26,16 +34,53 @@ namespace ecommerce_music_back.Services
             return await _appDbContext.string_instrument.ToListAsync();
         }
 
+
         public async Task<StringInstrument> FindByIdAsync(int stringId)
         {
             return await _appDbContext.string_instrument.FirstOrDefaultAsync(result => result.id == stringId);
         }
 
-        public async Task<StringInstrument> CreateAsync(StringInstrument stringInstrument)
+        public bool VerifyUserIsAuthenticated()
         {
-            await _appDbContext.string_instrument.AddAsync(stringInstrument);
-            await _appDbContext.SaveChangesAsync();
-            return stringInstrument;
+            var httpContext = _httpContextAccessor.HttpContext.User;
+            if (httpContext.Identity.IsAuthenticated)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool VerifyIsUserOrAdmin()
+        {
+            var httpContext = _httpContextAccessor.HttpContext.User;
+            if (httpContext.IsInRole("ADMIN"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<StringInstrumentResponse> CreateAsync(StringInstrument stringInstrument)
+        {
+
+            if (VerifyUserIsAuthenticated() && VerifyIsUserOrAdmin())
+            {
+
+                using (var contexto = _appDbContext)
+                {
+
+                    await _appDbContext.string_instrument.AddAsync(stringInstrument);
+                    await _appDbContext.SaveChangesAsync();
+                    return _mapper.Map<StringInstrumentResponse>(stringInstrument);
+
+                }
+            }
+
+            else
+            {
+                return null;
+            }
+
         }
 
         public async Task<StringInstrument> UpdateAsync(StringInstrument stringInstrument, int stringId)
@@ -93,7 +138,7 @@ namespace ecommerce_music_back.Services
                     countStringInstruments = stringInstruments.Count();
 
                 }
-                
+
             }
             catch (System.Exception)
             {

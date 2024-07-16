@@ -114,6 +114,11 @@ namespace ecommerce_music_back.data
                 .HasMany(relations => relations.soundBoxs)
                 .WithOne(relations => relations.soundBoxCategory)
                 .HasForeignKey(relations => relations.soundBoxCategoryId);
+
+            modelBuilder.Entity<UserModel>()
+                .HasMany(relations => relations.StringInstruments)
+                .WithOne(relations => relations.userModel)
+                .HasForeignKey(relations => relations.userId);
         }
 
     }

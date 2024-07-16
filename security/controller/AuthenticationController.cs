@@ -35,7 +35,9 @@ namespace ecommerce_music_back.security.controller
                 
                 Email = registerDtos.Email,
 
-                Password = BCrypt.Net.BCrypt.HashPassword(registerDtos.Password)
+                Password = BCrypt.Net.BCrypt.HashPassword(registerDtos.Password),
+
+                Role = registerDtos.Role,
             };
 
 
@@ -62,6 +64,13 @@ namespace ecommerce_music_back.security.controller
 
             var createJwtToken = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName);
             
+            Response.Cookies.Append("jwt", createJwtToken, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                //for retrieve jwt cookies without warning
+                SameSite = SameSiteMode.None
+            });
             return Ok(new {message = "User Logged", createJwtToken});
         } 
 

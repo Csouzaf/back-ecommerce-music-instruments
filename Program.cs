@@ -31,9 +31,6 @@ builder.Services.AddEntityFrameworkNpgsql().AddDbContext<AppDbContext>(
     
 );
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
 
@@ -51,38 +48,40 @@ builder.Services.AddScoped<IDrumnsPercussionCategoryRepository, DrumnsPercussion
 
 builder.Services.AddScoped<JwtService>();
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+// builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(options =>
     {
         
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-       
+         options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
 
     })
     .AddJwtBearer(options =>
-    
     {
-       
+       string masterKey = "66bfde1acdd9b8c228a8b8d66100c5734188d64d917dd5c5bfbbd92b39b5a0cc";
         options.SaveToken = true;
-
+        //options.Audience = "http://localhost:7049";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = false,
-          
+            ValidateLifetime = true,
             ValidateAudience = false,
   
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"])),
+            IssuerSigningKey = new SymmetricSecurityKey( Convert.FromHexString(masterKey)),
 
             ClockSkew = TimeSpan.Zero
         };
     });
 
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession();
@@ -105,9 +104,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors(options => options.WithOrigins(new []{"http://localhost:7049","http://localhost:5075", "http://localhost:4200"})
-    .AllowCredentials()
-    .AllowAnyMethod()
     .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
 );
 
 app.UseAuthentication();
