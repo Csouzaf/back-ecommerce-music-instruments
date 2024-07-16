@@ -119,6 +119,21 @@ namespace ecommerce_music_back.data
                 .HasMany(relations => relations.StringInstruments)
                 .WithOne(relations => relations.userModel)
                 .HasForeignKey(relations => relations.userId);
+
+            modelBuilder.Entity<UserModel>()
+                .HasMany(relations => relations.WindInstruments)
+                .WithOne(relations => relations.userModel)
+                .HasForeignKey(relations => relations.userId);
+
+            modelBuilder.Entity<UserModel>()
+                .HasMany(relations => relations.SoundBoxs)
+                .WithOne(relations => relations.userModel)
+                .HasForeignKey(relations => relations.userId);
+
+            modelBuilder.Entity<UserModel>()
+                .HasMany(relations => relations.DrumnsPercussions)
+                .WithOne(relations => relations.userModel)
+                .HasForeignKey(relations => relations.userId);
         }
 
     }

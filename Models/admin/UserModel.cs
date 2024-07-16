@@ -18,15 +18,20 @@ namespace ecommerce_music_back.Models.admin
 
         [Required]
         public string Email { get; set; }
-
+ 
         [Required]
         public string Password { get; set; }
 
         public string? Role { get; set; }
 
         public ICollection<StringInstrument> StringInstruments { get; } = new List<StringInstrument>();
+        public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
+        public ICollection<PianoKeyboard> PianoKeyboards { get; } = new List<PianoKeyboard>();
+        public ICollection<SoundBox> SoundBoxs { get; } = new List<SoundBox>();
+        public ICollection<WindInstrument> WindInstruments { get; } = new List<WindInstrument>();
 
         public DateTime CreatedDate { get; set; }
+
         public DateTime? UpdatedDate { get; set; }
 
         public UserModel()

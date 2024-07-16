@@ -13,15 +13,6 @@ namespace ecommerce_music_back.Models
         
         [Column("name")]
         public string name { get; set; }
-
-        [Column("date_time")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? dateTime { get; set; }
-
-        [Column("created_time")]
-        [DataType(DataType.Date)]
-        public DateTime created { get; set; } = DateTime.UtcNow;
         
         [JsonIgnore]
         public Brand? brand { get; set; }
@@ -72,10 +63,17 @@ namespace ecommerce_music_back.Models
         [JsonIgnore]
         public UserModel? userModel { get; set; }
 
-        // public StringInstrument(StringInstrument stringInstrument)
-        // {
-        //     stringInstrument.created = DateTime.UtcNow;
-        // }
+        [Column("date_time")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? dateTime { get; set; }
+
+        [Column("created_time")]
+        [DataType(DataType.Date)]
+        public DateTime created { get; set; } = DateTime.UtcNow;
+
+        [Column("price")]
+        public double price { get; set; }
        
     }
 }

@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using ecommerce_music_back.Models.admin;
 
 namespace ecommerce_music_back.Models
 {
@@ -70,5 +71,21 @@ namespace ecommerce_music_back.Models
         [ForeignKey("SoundBox")]
         [Column("sound_box_category_id")]
         public int soundBoxCategoryId { get; set; }
+
+         [ForeignKey("UserModel")]
+        [Column("user_id")]
+        public Guid userId { get; set; }
+
+        [JsonIgnore]
+        public UserModel? userModel { get; set; }
+
+        [Column("date_time")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? dateTime { get; set; }
+
+        [Column("created_time")]
+        [DataType(DataType.Date)]
+        public DateTime created { get; set; } = DateTime.UtcNow;
     }
 }
