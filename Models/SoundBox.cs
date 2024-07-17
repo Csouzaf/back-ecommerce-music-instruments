@@ -87,5 +87,10 @@ namespace ecommerce_music_back.Models
         [Column("created_time")]
         [DataType(DataType.Date)]
         public DateTime created { get; set; } = DateTime.UtcNow;
+   
+    //TODO - Create column
+        [Column("qnt_avaliable")]
+        public int quantityAvaliable { get; set; }
+
     }
 }

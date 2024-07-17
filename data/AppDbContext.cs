@@ -43,6 +43,8 @@ namespace ecommerce_music_back.data
 
         public DbSet<WindInstrument> wind_instrument { get; set; }
 
+        public DbSet<OrderProductsUser> order_products_user { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brand>()

@@ -38,6 +38,14 @@ namespace ecommerce_music_back.security.controller
                 Password = BCrypt.Net.BCrypt.HashPassword(registerDtos.Password),
 
                 Role = registerDtos.Role,
+
+                Address = registerDtos.Address,
+                
+                Cep = registerDtos.Cep,
+                
+                Cpf = registerDtos.Cpf,
+                
+                Cnpj = registerDtos.Cnpj
             };
 
 

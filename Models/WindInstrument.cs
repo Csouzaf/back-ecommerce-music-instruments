@@ -61,5 +61,10 @@ namespace ecommerce_music_back.Models
 
         [Column("price")]
         public double price { get; set; }
+        
+        //TODO - Create column
+        [Column("qnt_avaliable")]
+        public int quantityAvaliable { get; set; }
+
     }
 }

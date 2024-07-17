@@ -21,6 +21,10 @@ namespace ecommerce_music_back.Models.admin
  
         [Required]
         public string Password { get; set; }
+        public string Address { get; set; }
+        public string Cep { get; set; }
+        public string Cpf { get; set; }
+        public string Cnpj { get; set; }
 
         public string? Role { get; set; }
 
@@ -37,8 +41,7 @@ namespace ecommerce_music_back.Models.admin
         public UserModel()
         {
             Id = Guid.NewGuid();
-            CreatedDate = DateTime.UtcNow;
-            UpdatedDate = DateTime.UtcNow;
+
         }
        
     }
