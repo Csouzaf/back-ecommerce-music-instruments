@@ -55,7 +55,6 @@ namespace ecommerce_music_back.Models
         [Column("qnt_avaliable")]
         public int quantityAvaliable { get; set; }
 
-
-        
+        public OrderProductsUser? orderProductsUser{ get; set; }
     }
 }

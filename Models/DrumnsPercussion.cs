@@ -77,8 +77,14 @@ namespace ecommerce_music_back.Models
         [Column("price")]
         public double price { get; set; }
 
+//TODO - Create column
+        [Column("percent_tax")]
+        public double percentTax { get; set; }
+
         [Column("qnt_avaliable")]
         public int quantityAvaliable { get; set; }
+
+        public OrderProductsUser? orderProductsUser{ get; set; }
 
 
     }
