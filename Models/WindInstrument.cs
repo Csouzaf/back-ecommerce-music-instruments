@@ -43,12 +43,12 @@ namespace ecommerce_music_back.Models
         [Column("wind_instrument_categoryId")]
         public int? windInstrumentCategoryId { get; set; }
 
-        [ForeignKey("UserModel")]
+        [ForeignKey("CommonUser")]
         [Column("user_id")]
         public Guid userId { get; set; }
 
         [JsonIgnore]
-        public UserModel? userModel { get; set; }
+        public CommonUser? commonUser { get; set; }
 
         [Column("date_time")]
         [DataType(DataType.Date)]

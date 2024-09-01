@@ -5,8 +5,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ecommerce_music_back.Models.admin
 {
-    [Table("user_model")]
-    public class UserModel
+    [Table("commom_user")]
+    public class CommonUser
     {   
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,12 +21,14 @@ namespace ecommerce_music_back.Models.admin
  
         [Required]
         public string Password { get; set; }
-        public string Address { get; set; }
-        public string Cep { get; set; }
-        public string Cpf { get; set; }
-        public string Cnpj { get; set; }
 
-        public string? Role { get; set; }
+        public string Address { get; set; }
+
+        public string Cep { get; set; }
+
+        public string Cpf { get; set; }
+
+        public string? Role { get; set; } = "USER";
 
         public ICollection<StringInstrument> StringInstruments { get; } = new List<StringInstrument>();
         public ICollection<DrumnsPercussion> DrumnsPercussions { get; } = new List<DrumnsPercussion>();
@@ -38,7 +40,7 @@ namespace ecommerce_music_back.Models.admin
 
         public DateTime? UpdatedDate { get; set; }
 
-        public UserModel()
+        public CommonUser()
         {
             Id = Guid.NewGuid();
 

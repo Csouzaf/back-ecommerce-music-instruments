@@ -18,6 +18,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration;
 
+builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
+
+builder.Services.AddScoped<IBrandRepository, BrandService>();
+
+builder.Services.AddScoped<IWindInstrumentRepository, WindInstrumentervice>();
+
+builder.Services.AddScoped<IModelRepository, ModelService>();
+
+builder.Services.AddScoped<IAdminUser, AdminUserService>();
+
+builder.Services.AddScoped<ICommonUser, CommonUserService>();
+
+builder.Services.AddScoped<IDrumnsPercussionRepository, DrumnsPercussionService>();
+
+builder.Services.AddScoped<IDrumnsPercussionCategoryRepository, DrumnsPercussionCategoryService>();
+
+builder.Services.AddScoped<JwtService>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -30,23 +48,6 @@ builder.Services.AddEntityFrameworkNpgsql().AddDbContext<AppDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
     
 );
-
-
-builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
-
-builder.Services.AddScoped<IBrandRepository, BrandService>();
-
-builder.Services.AddScoped<IWindInstrumentRepository, WindInstrumentervice>();
-
-builder.Services.AddScoped<IModelRepository, ModelService>();
-
-builder.Services.AddScoped<IUserModel, UserModelService>();
-
-builder.Services.AddScoped<IDrumnsPercussionRepository, DrumnsPercussionService>();
-
-builder.Services.AddScoped<IDrumnsPercussionCategoryRepository, DrumnsPercussionCategoryService>();
-
-builder.Services.AddScoped<JwtService>();
 
 // builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

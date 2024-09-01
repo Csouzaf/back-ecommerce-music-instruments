@@ -13,76 +13,139 @@ namespace ecommerce_music_back.security.controller
     [Route("auth")]
     public class AuthenticationController : Controller
     {
-        private readonly IUserModel _userModel;
+        private readonly IAdminUser _AdminUser;
+        private readonly ICommonUser _commonUser;
         private readonly AppDbContext _appDbContext;
         private readonly JwtService _jwtService;
-        public AuthenticationController(IUserModel userModel, AppDbContext appDbContext, JwtService jwtService)
+        public AuthenticationController(IAdminUser AdminUser, AppDbContext appDbContext, JwtService jwtService, ICommonUser commonUser)
         {
-            _userModel = userModel;
+            _AdminUser = AdminUser;
             _appDbContext = appDbContext;
             _jwtService = jwtService;
+            _commonUser = commonUser;
         }
 
         [HttpPost("signup")]
-        public IActionResult Signup([FromBody] RegisterDtos registerDtos){
+        public IActionResult signup([FromBody] RegisterDtos registerDtos)
+        {
 
-            var userModel = new UserModel
+            if (registerDtos.Role == "ADMIN")
             {
-            
-                FirstName = registerDtos.FirstName,
-                
-                LastName = registerDtos.LastName,
-                
-                Email = registerDtos.Email,
 
-                Password = BCrypt.Net.BCrypt.HashPassword(registerDtos.Password),
+                var adminUser = new AdminUser
+                {
 
-                Role = registerDtos.Role,
+                    FirstName = registerDtos.FirstName,
 
-                Address = registerDtos.Address,
-                
-                Cep = registerDtos.Cep,
-                
-                Cpf = registerDtos.Cpf,
-                
-                Cnpj = registerDtos.Cnpj
-            };
+                    LastName = registerDtos.LastName,
 
+                    Email = registerDtos.Email,
 
-            var createdUserAdm = _userModel.Create(userModel);
+                    Password = BCrypt.Net.BCrypt.HashPassword(registerDtos.Password),
 
-            if(createdUserAdm == null){
-                return BadRequest(new {message = "Failed"});
+                    Address = registerDtos.Address,
+
+                    Cep = registerDtos.Cep,
+
+                    Cnpj = registerDtos.Cnpj
+                };
+
+                var createdUserAdm = _AdminUser.Create(adminUser);
+
+                if (createdUserAdm == null)
+                {
+                    return BadRequest(new { message = "Failed" });
+                }
+
+                return Created("success", new { createdUserAdm });
             }
 
-            return Created("success", new {createdUserAdm});
+            else
+            {
+                var commonUser = new CommonUser
+                {
+
+                    FirstName = registerDtos.FirstName,
+
+                    LastName = registerDtos.LastName,
+
+                    Email = registerDtos.Email,
+
+                    Password = BCrypt.Net.BCrypt.HashPassword(registerDtos.Password),
+
+                    Address = registerDtos.Address,
+
+                    Cep = registerDtos.Cep,
+
+                };
+
+                var createdCommonUser = _commonUser.Create(commonUser);
+
+                if (createdCommonUser == null)
+                {
+                    return BadRequest(new { message = "Failed" });
+                }
+
+                return Created("success", new { createdCommonUser });
+            }
+
+
+
         }
 
+
+
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginDtos loginDtos){
-            
-            var verifyUserEmailAlreadyRegister =_userModel.FindByEmail(loginDtos.Email);
-            
+        public IActionResult Login([FromBody] LoginDtos loginDtos)
+        {
+            //Admin
+            var verifyAdminUserEmailAlreadyRegister = _AdminUser.FindByEmail(loginDtos.Email);
+
+            var verifyAdminUserPassword = verifyAdminUserEmailAlreadyRegister.Password;
+
+            //User
+            var verifyUserEmailAlreadyRegister = _commonUser.FindByEmail(loginDtos.Email);
+
             var verifyUserPassword = verifyUserEmailAlreadyRegister.Password;
 
-            if(verifyUserEmailAlreadyRegister == null || verifyUserPassword == null)
+            if (verifyAdminUserEmailAlreadyRegister != null && verifyAdminUserPassword != null)
             {
-                return BadRequest(new {message = "Email or Password incorrect"});
+
+                var createJwtTokenAdmin = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName);
+
+                Response.Cookies.Append("jwt", createJwtTokenAdmin, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    //for retrieve jwt cookies without warning
+                    SameSite = SameSiteMode.None
+                });
+                return Ok(new { message = "User Logged", createJwtTokenAdmin });
+
             }
 
-            var createJwtToken = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName);
-            
-            Response.Cookies.Append("jwt", createJwtToken, new CookieOptions
+            else if (verifyUserEmailAlreadyRegister != null && verifyUserPassword != null)
             {
-                HttpOnly = true,
-                Secure = true,
-                //for retrieve jwt cookies without warning
-                SameSite = SameSiteMode.None
-            });
-            return Ok(new {message = "User Logged", createJwtToken});
-        } 
+                var createJwtTokenUser = _jwtService.generateJwt(verifyUserEmailAlreadyRegister.Id, verifyUserEmailAlreadyRegister.FirstName);
+
+                Response.Cookies.Append("jwt", createJwtTokenUser, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    //for retrieve jwt cookies without warning
+                    SameSite = SameSiteMode.None
+                });
+                return Ok(new { message = "User Logged", createJwtTokenUser });
+              
+            }
+
+            else
+            {
+                return BadRequest(new { message = "Email or Password incorrect" });
+            }
+        }
 
     }
 
- 
+
 }

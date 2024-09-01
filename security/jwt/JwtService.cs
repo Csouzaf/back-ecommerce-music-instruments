@@ -13,12 +13,13 @@ namespace ecommerce_music_back.security.jwt
 {
     public class JwtService
     {
-        private readonly IUserModel _userModel;
-       private readonly UserManager<IdentityUser> _userManager;
-        public JwtService( IUserModel userModel, UserManager<IdentityUser> userManager)
+        private readonly IAdminUser _AdminUser;
+        private readonly ICommonUser _commonUser;
+
+        public JwtService( IAdminUser AdminUser, ICommonUser commonUser)
         {
-            _userModel = userModel;
-            _userManager = userManager;
+            _AdminUser = AdminUser;
+            _commonUser = commonUser;
         }
         private string masterKey = "66bfde1acdd9b8c228a8b8d66100c5734188d64d917dd5c5bfbbd92b39b5a0cc";
         
@@ -30,14 +31,17 @@ namespace ecommerce_music_back.security.jwt
 
             var verifySimmetricBytesAndAlgorithmsSignature = new SigningCredentials(verifySymmetricBytesEncodeKey, SecurityAlgorithms.HmacSha256Signature);
 
-            var getName = _userModel.findByName(Name);
+            var getName = _AdminUser.findByName(Name);
+            var getNameCommonUser = _commonUser.findByName(Name);
 
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Jti, uuId.ToString()),
                 new Claim("uuid", uuId.ToString()),
-                new Claim("name", getName.FirstName),
-                new Claim("role", getName.Role),
+                new Claim("name", getName.FirstName), 
+                new Claim("nameCommonUser", getNameCommonUser.FirstName),
+                new Claim("roleAdmin", getName.Role),
+                new Claim("roleUser", getNameCommonUser.Role),
            
                 //Guid.NewGuid().ToString()
             };

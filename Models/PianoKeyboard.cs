@@ -32,12 +32,12 @@ namespace ecommerce_music_back.Models
         [Column("piano_category_id")]
         public int pianoCategoryId { get; set; }
 
-        [ForeignKey("UserModel")]
+        [ForeignKey("CommonUser")]
         [Column("user_id")]
         public Guid userId { get; set; }
 
         [JsonIgnore]
-        public UserModel? userModel { get; set; }
+        public CommonUser? commonUser { get; set; }
 
         [Column("date_time")]
         [DataType(DataType.Date)]
@@ -51,7 +51,10 @@ namespace ecommerce_music_back.Models
         [Column("price")]
         public double price { get; set; }
 
- //TODO - Create column
+        [Column("percent_tax")]
+        public double percentTax { get; set; }
+
+
         [Column("qnt_avaliable")]
         public int quantityAvaliable { get; set; }
 

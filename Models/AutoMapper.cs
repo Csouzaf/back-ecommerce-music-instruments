@@ -7,8 +7,8 @@ namespace ecommerce_music_back.Models
     {
         public AutoMapperProfile()
         {
-            CreateMap<DrumnsPercussionResponse, DrumnsPercussion>();
-            CreateMap<DrumnsPercussion, DrumnsPercussionResponse>();
+            CreateMap<DrumnsPercussionResponse, DrumnsPercussion>()
+                .ReverseMap();
 
             CreateMap<Brand, BrandResponse>()
                 .ReverseMap();

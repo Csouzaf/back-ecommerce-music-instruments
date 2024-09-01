@@ -16,8 +16,9 @@ namespace ecommerce_music_back.data
 
         }
 
+        public DbSet<CommonUser> common_user { get; set; }
 
-        public DbSet<UserModel> user_model { get; set; }
+        public DbSet<AdminUser> admin_user { get; set; }
         
         public DbSet<DrumnsCategory> drumns_category { get; set; }
 
@@ -117,24 +118,24 @@ namespace ecommerce_music_back.data
                 .WithOne(relations => relations.soundBoxCategory)
                 .HasForeignKey(relations => relations.soundBoxCategoryId);
 
-            modelBuilder.Entity<UserModel>()
+            modelBuilder.Entity<CommonUser>()
                 .HasMany(relations => relations.StringInstruments)
-                .WithOne(relations => relations.userModel)
+                .WithOne(relations => relations.commonUser)
                 .HasForeignKey(relations => relations.userId);
 
-            modelBuilder.Entity<UserModel>()
+            modelBuilder.Entity<CommonUser>()
                 .HasMany(relations => relations.WindInstruments)
-                .WithOne(relations => relations.userModel)
+                .WithOne(relations => relations.commonUser)
                 .HasForeignKey(relations => relations.userId);
 
-            modelBuilder.Entity<UserModel>()
+            modelBuilder.Entity<CommonUser>()
                 .HasMany(relations => relations.SoundBoxs)
-                .WithOne(relations => relations.userModel)
+                .WithOne(relations => relations.commonUser)
                 .HasForeignKey(relations => relations.userId);
 
-            modelBuilder.Entity<UserModel>()
+            modelBuilder.Entity<CommonUser>()
                 .HasMany(relations => relations.DrumnsPercussions)
-                .WithOne(relations => relations.userModel)
+                .WithOne(relations => relations.commonUser)
                 .HasForeignKey(relations => relations.userId);
 
             modelBuilder.Entity<DrumnsPercussion>()
