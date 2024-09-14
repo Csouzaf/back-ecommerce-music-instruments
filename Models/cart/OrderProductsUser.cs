@@ -12,12 +12,12 @@ namespace ecommerce_music_back.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid id { get; set; }
         
-        [ForeignKey("UserModel")]
-        [Column("user_id")]
-        public Guid userId { get; set; }
+        [ForeignKey("AdminUser")]
+        [Column("user_adm_id")]
+        public Guid userAdminId { get; set; }
 
         [JsonIgnore]
-        public UserModel? userModel { get; set; }
+        public AdminUser? adminUser { get; set; }
 
         [Column("order_date")]
         [DataType(DataType.Date)]
