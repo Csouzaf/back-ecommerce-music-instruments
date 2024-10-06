@@ -35,6 +35,8 @@ namespace ecommerce_music_back.Models.admin
         public ICollection<PianoKeyboard> PianoKeyboards { get; } = new List<PianoKeyboard>();
         public ICollection<SoundBox> SoundBoxs { get; } = new List<SoundBox>();
         public ICollection<WindInstrument> WindInstruments { get; } = new List<WindInstrument>();
+        public ICollection<OrderPaymentProduct> orderPaymentProducts { get; } = new List<OrderPaymentProduct>();
+        public ICollection<PaymentProduct> paymentProducts { get; } = new List<PaymentProduct>();
 
         public DateTime CreatedDate { get; set; }
 

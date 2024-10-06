@@ -44,18 +44,16 @@ namespace ecommerce_music_back.data
 
         public DbSet<WindInstrument> wind_instrument { get; set; }
 
-        public DbSet<OrderProductsUser> order_products_user { get; set; }
+        public DbSet<OrderPaymentProduct> order_payment_product { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+    
+    #region Brand
+
             modelBuilder.Entity<Brand>()
                 .HasMany(relations => relations.models)
                 .WithOne(relations => relations.brand)
-                .HasForeignKey(relations => relations.brandId);
-
-            modelBuilder.Entity<DrumnsPercussion>()
-                .HasOne(relations => relations.brand)
-                .WithMany(relations => relations.drumnsPercussions)
                 .HasForeignKey(relations => relations.brandId);
 
             modelBuilder.Entity<Brand>()
@@ -77,7 +75,9 @@ namespace ecommerce_music_back.data
                 .HasMany(relations => relations.windInstruments)
                 .WithOne(relations => relations.brand)
                 .HasForeignKey(relations => relations.brandId);
-
+#endregion
+//------------------------------------------------------------------------------------------------------------------
+#region model
             modelBuilder.Entity<Model>()
                 .HasMany(relations => relations.windInstruments)
                 .WithOne(relations => relations.model)
@@ -92,7 +92,9 @@ namespace ecommerce_music_back.data
                 .HasMany(relations => relations.drumnsPercussions)
                 .WithOne(relations => relations.model)
                 .HasForeignKey(relations => relations.modelId);
-
+#endregion
+//------------------------------------------------------------------------------------------------------------------
+#region category
             modelBuilder.Entity<DrumnsCategory>()
                 .HasMany(relations => relations.drumnsPercussions)
                 .WithOne(relations => relations.drumnsCategory)
@@ -117,6 +119,9 @@ namespace ecommerce_music_back.data
                 .HasMany(relations => relations.soundBoxs)
                 .WithOne(relations => relations.soundBoxCategory)
                 .HasForeignKey(relations => relations.soundBoxCategoryId);
+#endregion
+//------------------------------------------------------------------------------------------------------------------
+#region commonuser
 
             modelBuilder.Entity<CommonUser>()
                 .HasMany(relations => relations.StringInstruments)
@@ -138,16 +143,82 @@ namespace ecommerce_music_back.data
                 .WithOne(relations => relations.commonUser)
                 .HasForeignKey(relations => relations.userId);
 
+#endregion
+//------------------------------------------------------------------------------------------------------------------
+#region drumns
             modelBuilder.Entity<DrumnsPercussion>()
-                .HasOne(relations => relations.orderProductsUser)
-                .WithOne(relations => relations.drumnsPercussion)
-                .HasForeignKey<OrderProductsUser>(relations => relations.drumnsPercussionId);
+                .HasOne(relations => relations.brand)
+                .WithMany(relations => relations.drumnsPercussions)
+                .HasForeignKey(relations => relations.brandId);
+
+#endregion
+
+
+#region PaymentProduct
+
+            modelBuilder.Entity<PaymentProduct>()
+                .HasOne(relations => relations.commonUser)
+                .WithMany(relations => relations.paymentProducts)
+                .HasForeignKey(relations => relations.commonUserId);
+
+
+            modelBuilder.Entity<PaymentProduct>()
+                .HasMany(relations => relations.orderPaymentProducts)
+                .WithOne(relations => relations.paymentProduct)
+                .HasForeignKey(relations => relations.paymentProductId);
+
+            
+            modelBuilder.Entity<PaymentProduct>()
+                .HasOne(relations => relations.drumnsPercussion)
+                .WithMany(relations => relations.paymentProducts)
+                .HasForeignKey(relations => relations.drumnsPercussionId);
+
+            modelBuilder.Entity<PaymentProduct>()
+                .HasOne(relations => relations.pianoKeyboard)
+                .WithMany(relations => relations.paymentProducts)
+                .HasForeignKey(relations => relations.pianoKeyboardId);
+                
+            modelBuilder.Entity<PaymentProduct>()
+                .HasOne(relations => relations.soundBox)
+                .WithMany(relations => relations.paymentProducts)
+                .HasForeignKey(relations => relations.soundBoxId);
+
+            modelBuilder.Entity<PaymentProduct>()
+                .HasOne(relations => relations.stringInstrument)
+                .WithMany(relations => relations.paymentProducts)
+                .HasForeignKey(relations => relations.stringInstrumentId);
+
+            modelBuilder.Entity<PaymentProduct>()
+                .HasOne(relations => relations.windInstrument)
+                .WithMany(relations => relations.paymentProducts)
+                .HasForeignKey(relations => relations.windInstrumentId);
+        
+#endregion
+
+            
+#region OrderProduct
+
+            modelBuilder.Entity<OrderPaymentProduct>()
+                .HasOne(relations => relations.commonUser)
+                .WithMany(relations => relations.orderPaymentProducts)
+                .HasForeignKey(relations => relations.common_user_Id);
+
+ 
+#endregion       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         }
 
     }
 
-    
-
-    
 
 }
