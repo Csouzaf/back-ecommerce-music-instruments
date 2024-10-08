@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ecommerce_music_back.Models;
 using ecommerce_music_back.security.Data;
 using ecommerce_music_back.security.service;
+using ecommerce_music_back.Rest;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,12 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddScoped<IStringInstrumentsRepository, StringInstrumentsService>();
 
 builder.Services.AddScoped<IBrandRepository, BrandService>();
+
+builder.Services.AddScoped<IAddressRepository, AddressService>();
+
+builder.Services.AddScoped<IBankRepository, BankService>();
+
+builder.Services.AddScoped<IBrasilApiRepository, BrasilApiRest>();
 
 builder.Services.AddScoped<IWindInstrumentRepository, WindInstrumentervice>();
 
@@ -38,6 +45,8 @@ builder.Services.AddScoped<JwtService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -76,13 +85,14 @@ builder.Services.AddAuthentication(options =>
             ValidateAudience = false,
   
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey( Convert.FromHexString(masterKey)),
+            IssuerSigningKey = new SymmetricSecurityKey(Convert.FromHexString(masterKey)),
 
             ClockSkew = TimeSpan.Zero
         };
     });
 
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession();
@@ -95,6 +105,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+   
 }
 
 
@@ -115,6 +126,19 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.Use(async (context, next) => 
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("swagger/index.html");
+        return;
+    }
+    await next();
+});
 
 app.MapControllerRoute(
     name: "default",
