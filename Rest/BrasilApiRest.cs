@@ -46,9 +46,34 @@ namespace ecommerce_music_back.Rest
              return response;
         }
 
-        // public async Task<GenericResponse<List<Bank>>> findAllBanks() 
-        // {
-            
-        // }
+        public async Task<GenericResponse<List<Bank>>> findAllBanks() 
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://brasilapi.com.br/api/banks/v1");
+
+            var banks = new GenericResponse<List<Bank>>();
+
+            using (var client = new HttpClient())
+            {
+                var responseBrasilApi = await client.SendAsync(request);
+
+                var contentResponse = await responseBrasilApi.Content.ReadAsStringAsync();
+
+                var objResponse = JsonSerializer.Deserialize<List<Bank>>(contentResponse);
+
+                if (responseBrasilApi.IsSuccessStatusCode)
+                {
+                    banks.httpStatusCode = responseBrasilApi.StatusCode;
+                    banks.returnData = objResponse;
+                }
+                else
+                {
+                    banks.httpStatusCode = responseBrasilApi.StatusCode;
+                    banks.returnError = JsonSerializer.Deserialize<ExpandoObject>(contentResponse);
+                }
+
+            }
+
+            return banks;
+        }
     }
 }

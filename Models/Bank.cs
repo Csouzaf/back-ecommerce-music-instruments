@@ -17,7 +17,8 @@ namespace ecommerce_music_back.Models
         public string? name { get; set; }
 
         [JsonPropertyName("code")]
-        public int code { get; set; }
+    
+        public int? code { get; set; }
 
         [JsonPropertyName("fullName")]
         public string? fullName { get; set; }

@@ -10,7 +10,7 @@ namespace ecommerce_music_back.Repository
 
         Task<GenericResponse<Address>> findAddressByCep(string cep);
 
-       // Task<GenericResponse<List<Bank>>> findAllBanks();
+        Task<GenericResponse<List<Bank>>> findAllBanks();
 
     }
 }

@@ -1,34 +1,32 @@
 
 using AutoMapper;
+using ecommerce_music_back.Dtos;
 using ecommerce_music_back.Models;
-using ecommerce_music_back.Models.response;
 using ecommerce_music_back.Repository;
-using ecommerce_music_back.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ecommerce_music_back.Controllers
 {
     [ApiController]
     [Route("bank")]
-    public class BancoController : Controller
+    public class BankController : Controller
     {
-        // private readonly IBrandRepository _brandRepository;
-        private readonly IMapper _mapper;
+        private readonly IBankRepository _bankRepository;
 
-        public BancoController(IMapper mapper)
+        public BankController(IMapper mapper, IBankRepository bankRepository)
         {
-            // _brandRepository = brandRepository;
-            _mapper = mapper;
+            _bankRepository = bankRepository;
         }
       
-        // [HttpGet()]
-        // public async Task<ActionResult<IEnumerable<Brand>>> FindAll()
-        // {
-        //     var brands = await _brandRepository.FindAllAsync();
-        //     var brandResponses = brands.Select(brand => new BrandResponse(brand)).ToList();
-        //     return Ok(brandResponses);
+        [HttpGet()]
+        public async Task<ActionResult<List<BankResponse>>>  FindAll()
+        {
+            var bankResponse = await _bankRepository.FindAllAsync();
+            var banks = bankResponse.Select(m => new {m.code, m.fullName, m.name}).ToList();
+         
+            return Ok(banks);
            
-        // }
+        }
 
         // [HttpPost()]
         // public async Task<ActionResult<BrandResponse>> Save(Brand brand)
